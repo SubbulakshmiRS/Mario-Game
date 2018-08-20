@@ -2,11 +2,13 @@ import shutil
 import numpy as np
 
 #boundary varibales 
-cols = shutil.get_terminal_size().columns
+cols = shutil.get_terminal_size().columns 
 rows = shutil.get_terminal_size().lines
 mids = int(cols/2)
 r1 = int(mids/2)
 r2 = int((mids + cols)/2)
+r3 = int((3*cols)/8)
+r4 = int((5*cols)/8)
 mids_r = int(rows/2)
 r1_r = int(rows/4)
 

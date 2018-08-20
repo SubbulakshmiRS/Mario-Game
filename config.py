@@ -1,11 +1,8 @@
 #common variables 
-start = 0
-dead = 0
-restart = 0
-
 m = ""
 e_list = []
 w_list = []
+lives = 3
 
 '''
     Allow certain inputs and translate to easier to read format
@@ -31,6 +28,15 @@ _allowed_inputs = {
     GUN    : ['b'],           \
     QUIT    : ['q']
 }
+
+class Dead_Mario(Exception):
+    pass
+
+class Touch_Boundary(Exception):
+    pass
+
+class Wall_Here(Exception):
+    pass
 
 def get_key(key):
     for x in _allowed_inputs:

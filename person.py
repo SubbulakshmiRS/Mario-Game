@@ -4,6 +4,7 @@ import time
 import common
 import movement
 import check
+import config
 
 class Person:
     def __init__(self, symbol, x, y):
@@ -32,13 +33,19 @@ class Person:
             self.move(self.x+2,self.y+2)
             time.sleep(0.05)
 
+    def change(self,symbol,x,y):
+        self.x = x
+        self.y = y
+        self.symbol = symbol
+
 
 class Mario(Person):
     def __init__(self,symbol,x,y):
         super().__init__(symbol,x,y)
 
     def move(self,x,y):
-        if (x > common.r1 and x < common.r2 ):
+        if (x > common.r3 and x < common.r4 ):
+            check.check_life(x,y,"Mario")
             super().move(x,y)
         else :
             movement.move_all_left(x-self.x)
@@ -50,9 +57,14 @@ class Enemy(Person):
         super().__init__(symbol,x,y)
 
     def move(self,x,y):
-        ret=check.check(x,y)
-        if ret in {1,2}:
-            return ret
+        try :
+            check.check(x,y,"Enemy")
+            super().move(x,y)
+        except config.Touch_Boundary:
+            config.e_list.remove(self)
+        except config.Wall_Here:
+            pass
+        except config.Dead_Mario:
+            super().move(x,y)
+            raise config.Dead_Mario from None 
 
-        super().move(x,y)
-        return 0

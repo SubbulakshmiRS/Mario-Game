@@ -17,9 +17,10 @@ char = ''
 while True:
     char=config.get_key(config.get_input())
     
-    create_scenery.create_floor(config.m)
-    create_scenery.create_Wall()
-    create_scenery.create_Enemy()
+    create_scenery.create_floor()
+    if config.m is not "":
+        create_scenery.create_Wall()
+        create_scenery.create_Enemy()
 
     if (char == config.QUIT):
         # shut down all [q]
@@ -39,19 +40,14 @@ while True:
 
     elif (char == config.RIGHT):
         # Person moving right[d]
-        a = config.m.x+1
-        b = config.m.y
-        config.m.move(a, b)
-        for i in config.w_list:
-            ret = i.move(i.x-1)
-            if (ret == 1):
-                config.w_list.remove(i)
-
+        if config.m is not "":
+            config.m.move(config.m.x+1, config.m.y)
         # time.sleep(button_delay)
 
     elif (char == config.JUMP):
         # Person  [w]
-        config.m.jump()
+        if config.m is not "":
+            config.m.jump()
         # time.sleep(button_delay)
 
     elif (char == "1"):
