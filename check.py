@@ -15,7 +15,7 @@ def check_life(x,y,who):
             raise config.Dead_Mario
 
 def check_boundary(x,y):
-    if x == 2 or x == common.cols-2 or y == 2 or y == common.rows-2 :
+    if x == 1 or x == common.cols or y == 1 or y == common.rows :
         raise config.Touch_Boundary
 
 def check(x,y,who):

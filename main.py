@@ -11,6 +11,7 @@ from colorama import Fore, Back, Style
  # import local files
 import create_scenery
 import config
+import common
 
 char = '' 
 
@@ -21,7 +22,11 @@ while True:
     if config.m is not "":
         create_scenery.create_Wall()
         create_scenery.create_Enemy()
+        if (char != config.JUMP):
+            create_scenery.check_floor()
+            
 
+    common.print_all()
     if (char == config.QUIT):
         # shut down all [q]
         print(Style.RESET_ALL)
