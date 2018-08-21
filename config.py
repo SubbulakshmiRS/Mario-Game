@@ -2,6 +2,8 @@
 m = ""
 e_list = []
 w_list = []
+p_list = []
+g_list = []
 lives = 3
 
 '''
@@ -36,6 +38,9 @@ class Touch_Boundary(Exception):
     pass
 
 class Wall_Here(Exception):
+    pass
+
+class Gap_Here(Exception):
     pass
 
 def get_key(key):

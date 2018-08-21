@@ -18,13 +18,11 @@ char = ''
 while True:
     char=config.get_key(config.get_input())
     
-    create_scenery.create_floor()
     if config.m is not "":
-        create_scenery.create_Wall()
-        create_scenery.create_Enemy()
+        create_scenery.create_scene()
         if (char != config.JUMP):
             create_scenery.check_floor()
-            
+
 
     common.print_all()
     if (char == config.QUIT):

@@ -19,6 +19,9 @@ def move_all_left(x):
 
     for i in config.w_list:
         i.change(i.symbol,i.x-x,i.y)
+
+    for i in config.g_list:
+        i.change(i.symbol,i.x-x,i.y)
     
     if death != 0 :
         raise config.Dead_Mario

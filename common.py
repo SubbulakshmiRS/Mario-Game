@@ -32,7 +32,7 @@ def print_all():
     os.system('cls' if os.name == 'nt' else 'clear')
     for j in range(1,rows+1):
         for i in range(1,cols+1):
-            if ARR[i][j] != 0 :
+            if ARR[i][j] not in {0,4}:
                 sys.stdout.write("\x1b7\x1b[%d;%df%s\x1b8" % (j, i, str(int(ARR[i][j]))))
                 sys.stdout.flush()
     
