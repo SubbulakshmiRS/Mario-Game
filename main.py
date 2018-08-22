@@ -17,14 +17,15 @@ char = ''
 
 while True:
     char=config.get_key(config.get_input())
-    
+    create_scenery.create_scene()
     if config.m is not "":
-        create_scenery.create_scene()
         if (char != config.JUMP):
-            create_scenery.check_floor()
-
-
+            create_scenery.check_floor()    
     common.print_all()
+    
+    #print(char)
+    #continue
+
     if (char == config.QUIT):
         # shut down all [q]
         print(Style.RESET_ALL)
@@ -56,3 +57,4 @@ while True:
     elif (char == "1"):
         print("Number 1 pressed")
         # pppptime.sleep(button_delay)
+    time.sleep(0.1)

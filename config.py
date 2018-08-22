@@ -4,6 +4,7 @@ e_list = []
 w_list = []
 p_list = []
 g_list = []
+m_list = []
 lives = 3
 
 '''
@@ -41,6 +42,12 @@ class Wall_Here(Exception):
     pass
 
 class Gap_Here(Exception):
+    pass
+
+class Enemy_Here(Exception):
+    pass
+
+class Platform_Here(Exception):
     pass
 
 def get_key(key):
