@@ -10,7 +10,7 @@ class Person(thing.Thing):
     def __init__(self, x, y):
         self.x=x
         self.y=y
-        self.check()
+        self.__check()
         self.print_out()
 
     def jump(self):
@@ -22,6 +22,10 @@ class Person(thing.Thing):
                 raise config.Gap_Here
             else:
                 self.move(self.x,self.y+1)
+    
+    def __check(self):
+        if (self.y >= common.mids_r and common.value_arr(self.x,self.y+1) != '0' ):
+            raise config.Gap_Here
 
 
 class Mario(Person):
