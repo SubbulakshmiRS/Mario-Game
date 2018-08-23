@@ -32,8 +32,6 @@ check.py
 - func for checking boundary 
 
 to do 
-- delete all elements touching the boundary
-- not allow elements to be created at the boundary
 - all references should be towards rows, cols and such variables
 - make boundary to show the lives left of Mario ,POINTS
 - create colors (not neccesary)
@@ -41,10 +39,17 @@ to do
 - update config to add colors and new variables
 - more inheritance and OOPS(private var , encapsulation , ...)
 - levels and tunnels(not neccesary)
-- documentation like README.md using markdown and requirements.txt ,etc (refer seniors game)
+- documentation like README.md using markdown and requirements.txt(!!!) ,etc (refer seniors game)
 - autopep8 and variable names 
 - no dead codes just commented out 
 
-
+- make sure it plays 
+- left motion 
+- one more enemy 
+- points and health
+- scenery 
+- sound
+- requirements.txt
+- tearing up of screen 
 
 

@@ -71,7 +71,7 @@ def create_Platform():
 
     if len(config.p_list) == 0:
         p = obstacle.Platform(
-            randint(config.m.x+2, common.cols-1), randint(2, common.mids_r-5))
+            randint(config.m.x+2, common.cols-5), randint(2, common.mids_r-5))
         config.p_list.append(p)
     elif len(config.p_list) < int(common.cols/20):
         if(randint(0, 5) == 1):
@@ -114,6 +114,7 @@ def create_Marijuana():
 
 
 def check_floor():
+    print("vsd")
     if common.value_arr(config.m.x, config.m.y+1) != "0":
         while(common.value_arr(config.m.x, config.m.y+1) != "0"):
             config.m.move(config.m.x, config.m.y+1)

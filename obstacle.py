@@ -59,7 +59,7 @@ class Gap(thing.Thing):
 class Marijuana(thing.Thing):
     def __init__(self, x):
         self.x = x
-        self.y = y
+        self.y = common.mids_r - 4
         check.check(self.x, self.y, "Marijuana")
         self.print_out()
 

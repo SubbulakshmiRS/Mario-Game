@@ -15,10 +15,11 @@ class Person(thing.Thing):
         self.print_out()
 
     def jump(self):
+        #print("babe")
         self.move(self.x+1, self.y-1)
 
     def drop(self):
-        if common.value_arr(self.x, self.y+1) != '0':
+        if self.y >= common.mids_r and common.value_arr(self.x, self.y+1) != '0':
             if self.y > (common.mids_r + 3):
                 raise config.Gap_Here
             else:
@@ -41,7 +42,7 @@ class Mario(Person):
         else:
             movement.move_all_left(x-self.x)
             check.check_life(self.x, y, "Mario")
-            super().move(self.x, y)
+            super().move(self.x, y,"Mario")
 
         try:
             self.drop()
@@ -54,7 +55,7 @@ class Mario(Person):
         common.set_arr(self.x, self.y-2, "^")
 
     def refresh_out(self):
-        for i in {-2, -1, 0}:
+        for i in range(-2, 1):
             common.reset_arr(self.x, self.y+i)
 
 

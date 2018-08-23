@@ -2,7 +2,7 @@
 #import termios
 #import tty
 import os
-#import time
+import time
 #from random import randint
 #import shutil
 #import numpy as np
