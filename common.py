@@ -2,6 +2,9 @@ import shutil
 import numpy as np
 import os
 import sys
+import config
+import time
+
 
 #boundary varibales 
 cols = shutil.get_terminal_size().columns 
@@ -33,10 +36,29 @@ def value_arr(x, y):
 
 def print_all():
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("MARIO GAME BY R.S.SUBBULAKSHMI\n")
-    for j in range(2,rows+1):
+    for j in range(1,rows+1):
         for i in range(1,cols+1):
             sys.stdout.write(ARR[i][j])
             sys.stdout.flush()
-        sys.stdout.write("\n")
+        if j < rows:
+            sys.stdout.write("\n")
     
+    print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.points)+"\t\t\tLIVES: "+str(config.lives)+"\n")   
+
+    
+    
+def restart_all():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    global ARR
+    ARR= np.full((cols+1,rows+1)," ",dtype=np.unicode)
+    config.m = ""
+    config.e_list = []
+    config.w_list = []
+    config.p_list = []
+    config.g_list = []
+    config.m_list = []
+    print_all()
+    time.sleep(0.2)
+
+def game_over():
+    restart_all()

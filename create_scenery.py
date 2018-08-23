@@ -31,7 +31,7 @@ def create_Enemy():
 
     for i in config.e_list:
         try:
-            i.move(i.x-1, i.y)
+            i.move(i.x-2, i.y)
         except config.Wall_Here:
             pass
         except config.Enemy_Here:
@@ -81,7 +81,7 @@ def create_Platform():
                 config.p_list.append(p)
 
     for i in config.p_list:
-        x = randint(-1, 1)+i.x
+        x = randint(-3, 3)+i.x
         i.move(i.x)
 
 
@@ -99,7 +99,7 @@ def create_Marijuana():
 
     if len(config.m_list) == 0:
         try:
-            m = obstacle.Marijuana(randint(common.mids, common.cols-1))
+            m = obstacle.Marijuana(randint(common.mids, common.cols-3))
             config.m_list.append(m)
         except (config.Dead_Mario, config.Wall_Here):
             pass
@@ -114,7 +114,6 @@ def create_Marijuana():
 
 
 def check_floor():
-    print("vsd")
     if common.value_arr(config.m.x, config.m.y+1) != "0":
         while(common.value_arr(config.m.x, config.m.y+1) != "0"):
             config.m.move(config.m.x, config.m.y+1)

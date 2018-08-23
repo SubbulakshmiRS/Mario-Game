@@ -10,8 +10,13 @@ def check_life(x,y,who):
             raise config.Enemy_Here
         elif common.value_arr(x,y) == "|":
             raise config.Wall_Here
+        elif common.value_arr(x,y+1) != "0":
+            raise config.Gap_Here
+        elif common.value_arr(x,y-1) in {"^","O","I"}:
+            raise config.Mario_Above
     elif who is "Mario" :
-        if common.value_arr(x,y) != " ":
+        if common.value_arr(x,y) not in {" ","I","O","^"}:
+            #print(common.value_arr(x,y))
             raise config.Dead_Mario
     elif who is "Marijuana":
         for j in range(0,2):

@@ -6,6 +6,7 @@ p_list = []
 g_list = []
 m_list = []
 lives = 3
+points = 0
 
 Obstacles = ["Wall", "Platform", "Marijuana", "Gap"]
 
@@ -60,12 +61,15 @@ class Enemy_Here(Exception):
 class Platform_Here(Exception):
     pass
 
+class Mario_Above(Exception):
+    pass
 
 def get_key(key):
     for x in _allowed_inputs:
         if key in _allowed_inputs[x]:
             return x
     return INVALID
+
 
 # Gets a single character from standard input.  Does not echo to the screen.
 

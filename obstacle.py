@@ -69,12 +69,11 @@ class Marijuana(thing.Thing):
 
     def refresh_out(self):
         for j in range(0, 2):
-            for i in range(-2, 3):
+            for i in range(-1, 2):
                 common.reset_arr(self.x+i, self.y+j)
 
     def print_out(self):
         for j in range(0, 2):
             for i in range(-1, 2):
                 common.set_arr(self.x+i, self.y+j, "*")
-            for i in {-2, 2}:
-                common.set_arr(self.x+i, self.y+j, "0")
+
