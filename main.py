@@ -7,23 +7,22 @@ import os
 #import shutil
 #import numpy as np
 
- # import local files
+# import local files
 import create_scenery
 import config
 import common
 
-char = '' 
+char = ''
 
 while True:
-    char=config.get_key(config.get_input())
+    char = config.get_key(config.get_input())
 
-    # creates the whole scene and creates the gravity effect too 
+    # creates the whole scene and creates the gravity effect too
     create_scenery.create_scene()
     if config.m is not "":
         if (char != config.JUMP):
-            create_scenery.check_floor()    
+            create_scenery.check_floor()
     common.print_all()
-    
 
     if (char == config.QUIT):
         # shut down all [q]
@@ -52,4 +51,3 @@ while True:
         # Person jumping [d]
         if config.m is not "":
             config.m.jump()
-
