@@ -26,6 +26,9 @@ class Thing():
         elif who in config.Elements:
             try:
                 check.check_boundary(self.x+4, self.y)
+                check.check_boundary(self.x-4, self.y)
+                check.check_boundary(self.x, self.y+4)
+                check.check_boundary(self.x, self.y-4)
                 self.print_out()
             except config.Touch_Boundary:
                 if who == "Wall":

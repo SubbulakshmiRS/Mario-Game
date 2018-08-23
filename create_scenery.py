@@ -98,7 +98,7 @@ def create_Gap():
 
 
 def create_Fish():
-
+    
     if config.f_list == []:
         f = scene.Fish(randint(2, common.cols-2),
                        randint(common.mids_r + 3, common.rows-2))
@@ -152,8 +152,6 @@ def create_Boss():
             config.stage = "won"
 
 # the gravity effect is created here
-
-
 def check_floor():
     if common.value_arr(config.m.x, config.m.y+1) != "0":
         while(common.value_arr(config.m.x, config.m.y+1) != "0"):
