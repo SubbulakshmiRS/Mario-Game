@@ -18,7 +18,7 @@ r4 = int((5*cols)/8)
 r5 = int(cols/8)
 r6 = int((7*cols)/8)
 mids_r = int(rows/2)
-r1_r = int(rows/4)
+r1_r = int(rows/5)
 
 
 #array representing the whole terminal
@@ -66,7 +66,7 @@ def game_over():
     sound.PlaySound("nsmb_game_over.wav") 
     restart_all()
     os.system("tput reset")
-    print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.points)+"\t\t\tLIVES: "+str(config.lives)+"\n")   
+    print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.points)+"\t\t\tLIVES: "+str(config.lives)+"\t\t\tLEVEL: " +str(config.level)+"\n")   
     if config.stage == "won":
         print("WON WON WON !!!\n")
     elif config.stage == "quit":

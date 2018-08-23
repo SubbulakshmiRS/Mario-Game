@@ -66,6 +66,7 @@ while (config.stage == "losing"):
                 config.m.jump()
 
     except config.Dead_Mario:
+        common.print_all()
         sound.PlaySound("mb_die.wav")
         config.lives -= 1
         if config.lives > 0:
@@ -75,5 +76,6 @@ while (config.stage == "losing"):
             break
 
 
-time.sleep(5)
+time.sleep(2)
+print("\nBYEEE!!!\n")
 exit(0)

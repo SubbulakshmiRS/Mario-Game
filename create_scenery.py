@@ -72,13 +72,13 @@ def create_Platform():
 
     if len(config.p_list) == 0:
         p = obstacle.Platform(
-            randint(config.m.x+2, common.cols-5), randint(5, common.mids_r-5))
+            randint(config.m.x+2, common.cols-5), randint(common.r1_r,common.mids_r-5))
         config.p_list.append(p)
     elif len(config.p_list) < int(common.cols/20):
         if(randint(0, 5) == 1):
             pos = config.p_list[-1].x + randint(7, 15)
             if pos < (common.cols - 3):
-                p = obstacle.Platform(pos, randint(0, common.mids_r-5))
+                p = obstacle.Platform(pos, randint(common.r1_r,common.mids_r-5))
                 config.p_list.append(p)
 
     for i in config.p_list:
@@ -110,10 +110,10 @@ def create_Fish():
 def create_Star():
 
     if config.s_list == []:
-        s = scene.Star(randint(2, common.cols-2),randint(2,5))
+        s = scene.Star(randint(2, common.cols-2),randint(2,common.r1_r))
         config.s_list.append(s)
     elif(randint(0, 5) == 1):
-        s = scene.Star(randint(2, common.cols-2),randint(2,5))
+        s = scene.Star(randint(2, common.cols-2),randint(2,common.r1_r))
         config.s_list.append(s)
 
 

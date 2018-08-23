@@ -11,7 +11,7 @@ Create the workspace to run the game
 > workon mario-game
 
 Git instructions 
-> git clone https://github.com/SubbulakshmiRS/Mario-game
+> git clone https://gitlab.com/SubbulakshmiRS/Mario-game (dev branch)
 
 Install dependencies 
 > pip3 install -r requirements.txt

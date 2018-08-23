@@ -1,19 +1,19 @@
 # common variables
-m = ""
-b = ""
-e_list = []
-w_list = []
-p_list = []
-g_list = []
-m_list = []
-f_list = []
-s_list = []
-b_list = []
-lives = 3
+
+m = "" #Mario
+b = "" #Boss
+e_list = [] #Enemy
+w_list = [] #Wall
+p_list = [] #Platform
+g_list = [] #Gap
+m_list = [] #Marijuana
+f_list = [] #Fish
+s_list = [] #Star
+b_list = [] #Bullets
+lives = 3 #lives for level 1
 points = 0
-time_start = 0
-level = 1
-stage = "losing"
+level = 1 #current level
+stage = "losing" #if you aint winning , then you are loosing
 
 Elements = ["Wall", "Platform", "Marijuana", "Gap","Fish","Star","Boss","Bullet"]
 

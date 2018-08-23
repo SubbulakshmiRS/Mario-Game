@@ -8,9 +8,6 @@ class Wall(thing.Thing):
     def __init__(self, x):
         super().__init__(x, common.mids_r)
 
-    def move(self, x):
-        super().move(x, self.y, "Wall")
-
     def refresh_out(self):
         for j in range(-4, 1):
             for i in range(-1, 2):
@@ -27,9 +24,6 @@ class Platform(thing.Thing):
     def __init__(self, x, y):
         super().__init__(x, y)
 
-    def move(self, x):
-        super().move(x, self.y, "Platform")
-
     def refresh_out(self):
         for i in range(-2, 3):
             common.reset_arr(self.x+i, self.y)
@@ -42,9 +36,6 @@ class Platform(thing.Thing):
 class Gap(thing.Thing):
     def __init__(self, x):
         super().__init__(x, common.mids_r+1)
-
-    def move(self, x):
-        super().move(x, self.y, "Gap")
 
     def refresh_out(self):
         for i in range(-1, 2):
@@ -62,10 +53,6 @@ class Marijuana(thing.Thing):
         check.check(self.x, self.y, "Marijuana")
         self.print_out()
 
-    # needed for move_all_left
-    def move(self, x):
-        super().move(x, self.y, "Marijuana")
-
     def refresh_out(self):
         for j in range(0, 2):
             for i in range(-1, 2):
@@ -81,9 +68,6 @@ class Bullet(thing.Thing):
         self.dir = dir
         super().__init__(x,y)
 
-    def move(self, x):
-        super().move(x, self.y, "Bullet")
-
     def refresh_out(self):
         common.reset_arr(self.x, self.y)
 
@@ -94,9 +78,6 @@ class Bullet(thing.Thing):
 class Boss(thing.Thing):
     def __init__(self, x,y):
         super().__init__(x,y)
-
-    def move(self, x):
-        super().move(x, self.y, "Boss")
 
     def shoot(self,x):
         dir = 0

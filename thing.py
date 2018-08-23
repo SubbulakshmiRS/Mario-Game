@@ -1,6 +1,7 @@
 import common
 import config
 import check
+import time
 
 #the core class - for checking the boundary 
 class Thing():
@@ -11,21 +12,18 @@ class Thing():
 
     def move(self,x,y='?',who='?'):
         #polymorphism
+        self.refresh_out()
         if who == '?':
-            self.refresh_out()
-            self.x = x
-            if y !='?':
-                self.y = y
-            self.print_out()
-        else :
-            self.move_who(x+4,y,who)
+            who = self.__class__.__name__
+        if y != '?':
+            self.y = y
+        self.x = x
 
-    def move_who(self,x,y,who):
-        if who in config.Elements :
+        if who == "Mario":
+            self.print_out()    
+        elif who in config.Elements :
             try :
-                check.check_boundary(x,y)
-                self.refresh_out()
-                self.x = x-4
+                check.check_boundary(self.x+4,self.y)
                 self.print_out()
             except config.Touch_Boundary:
                 if who == "Wall":
