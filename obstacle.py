@@ -63,10 +63,11 @@ class Marijuana(thing.Thing):
             for i in range(-1, 2):
                 common.set_arr(self.x+i, self.y+j, "$")
 
+
 class Bullet(thing.Thing):
-    def __init__(self, x,y,dir):
+    def __init__(self, x, y, dir):
         self.dir = dir
-        super().__init__(x,y)
+        super().__init__(x, y)
 
     def refresh_out(self):
         common.reset_arr(self.x, self.y)
@@ -76,28 +77,28 @@ class Bullet(thing.Thing):
 
 
 class Boss(thing.Thing):
-    def __init__(self, x,y):
-        super().__init__(x,y)
+    def __init__(self, x, y):
+        super().__init__(x, y)
 
-    def shoot(self,x):
+    def shoot(self, x):
         dir = 0
-        if x > self.x :
+        if x > self.x:
             dir = 1
-        else :
+        else:
             dir = -1
 
-        b = Bullet(self.x+dir,self.y,dir)
+        b = Bullet(self.x+dir, self.y, dir)
         config.b_list.append(b)
 
         for i in config.b_list:
             i.move(i.x+i.dir)
 
     def refresh_out(self):
-        for i in range(0,3):
-            for j in range(i-3,3-i):
-                common.reset_arr(self.x+j,self.y+i)
+        for i in range(0, 3):
+            for j in range(i-3, 3-i):
+                common.reset_arr(self.x+j, self.y+i)
 
     def print_out(self):
-        for i in range(0,3):
-            for j in range(i-3,3-i):
-                common.set_arr(self.x+j,self.y-i,"B")
+        for i in range(0, 3):
+            for j in range(i-3, 3-i):
+                common.set_arr(self.x+j, self.y-i, "B")

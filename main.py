@@ -11,33 +11,31 @@ import sound
 char = ''
 
 while (config.stage == "losing"):
-    try :
-        #for next level
+    try:
+        # for next level
         if config.points > 50 and config.level == 1:
             config.level = 2
             common.restart_all()
             config.lives = 10
 
-        #if mario goes below the floor level             
+        # if mario goes below the floor level
         if config.m != "" and config.m.y > common.mids_r:
             raise config.Dead_Mario
 
-
-        #create the scene depending on the level
+        # create the scene depending on the level
         create_scenery.create_scene()
         if config.m is not "":
             if (char != config.JUMP):
                 create_scenery.check_floor()
         common.print_all()
 
-        #get input from user 
+        # get input from user
         char = config.get_key(config.get_input())
 
         if (char == config.QUIT):
             # shut down all [q]
             config.stage = "quit"
             common.game_over()
-
 
         if (char == config.START):
             # create a Person [m]
@@ -71,7 +69,7 @@ while (config.stage == "losing"):
         config.lives -= 1
         if config.lives > 0:
             common.restart_all()
-        else :
+        else:
             common.game_over()
             break
 

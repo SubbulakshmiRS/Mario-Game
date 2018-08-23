@@ -1,21 +1,22 @@
 # common variables
 
-m = "" #Mario
-b = "" #Boss
-e_list = [] #Enemy
-w_list = [] #Wall
-p_list = [] #Platform
-g_list = [] #Gap
-m_list = [] #Marijuana
-f_list = [] #Fish
-s_list = [] #Star
-b_list = [] #Bullets
-lives = 3 #lives for level 1
+m = ""  # Mario
+b = ""  # Boss
+e_list = []  # Enemy
+w_list = []  # Wall
+p_list = []  # Platform
+g_list = []  # Gap
+m_list = []  # Marijuana
+f_list = []  # Fish
+s_list = []  # Star
+b_list = []  # Bullets
+lives = 3  # lives for level 1
 points = 0
-level = 1 #current level
-stage = "losing" #if you aint winning , then you are loosing
+level = 1  # current level
+stage = "losing"  # if you aint winning , then you are loosing
 
-Elements = ["Wall", "Platform", "Marijuana", "Gap","Fish","Star","Boss","Bullet"]
+Elements = ["Wall", "Platform", "Marijuana",
+            "Gap", "Fish", "Star", "Boss", "Bullet"]
 
 '''
     Allow certain inputs and translate to easier to read format
@@ -43,29 +44,39 @@ _allowed_inputs = {
     QUIT: ['q']
 }
 
-#contains all the exceptions used 
+# contains all the exceptions used
+
+
 class Dead_Mario(Exception):
     pass
+
 
 class Touch_Boundary(Exception):
     pass
 
+
 class Wall_Here(Exception):
     pass
+
 
 class Gap_Here(Exception):
     pass
 
+
 class Enemy_Here(Exception):
     pass
+
 
 class Platform_Here(Exception):
     pass
 
+
 class Mario_Above(Exception):
     pass
 
-#functions for getting the input key
+# functions for getting the input key
+
+
 def get_key(key):
     for x in _allowed_inputs:
         if key in _allowed_inputs[x]:
