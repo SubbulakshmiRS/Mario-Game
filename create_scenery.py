@@ -5,6 +5,7 @@ import obstacle
 import common
 import config
 import check
+import scene
 
 
 def floor(floor_y):
@@ -15,7 +16,7 @@ def floor(floor_y):
             common.set_arr(i, floor_y+1, "0")
 
 
-def create_floor():
+def create_Floor():
     floor(common.mids_r+1)
 
 
@@ -71,7 +72,7 @@ def create_Platform():
 
     if len(config.p_list) == 0:
         p = obstacle.Platform(
-            randint(config.m.x+2, common.cols-5), randint(2, common.mids_r-5))
+            randint(config.m.x+2, common.cols-5), randint(5, common.mids_r-5))
         config.p_list.append(p)
     elif len(config.p_list) < int(common.cols/20):
         if(randint(0, 5) == 1):
@@ -82,7 +83,7 @@ def create_Platform():
 
     for i in config.p_list:
         x = randint(-3, 3)+i.x
-        i.move(i.x)
+        i.move(x)
 
 
 def create_Gap():
@@ -93,6 +94,27 @@ def create_Gap():
     elif(randint(0, 10) == 1):
         g = obstacle.Gap(randint(config.m.x + 2, common.cols-2))
         config.g_list.append(g)
+
+def create_Fish():
+
+    if config.f_list == []:
+        f = scene.Fish(randint(2, common.cols-2),randint(common.mids_r +3,common.rows-2))
+        config.f_list.append(f)
+    elif(randint(0, 10) == 1):
+        f = scene.Fish(randint(2, common.cols-2),randint(common.mids_r +3,common.rows-2))
+        config.f_list.append(f)
+
+    for i in config.f_list:
+        i.move(i.x+1)
+
+def create_Star():
+
+    if config.s_list == []:
+        s = scene.Star(randint(2, common.cols-2),randint(2,5))
+        config.s_list.append(s)
+    elif(randint(0, 5) == 1):
+        s = scene.Star(randint(2, common.cols-2),randint(2,5))
+        config.s_list.append(s)
 
 
 def create_Marijuana():
@@ -112,7 +134,18 @@ def create_Marijuana():
             except (config.Dead_Mario, config.Wall_Here):
                 pass
 
+def create_Boss():
+    if config.b == "":
+        config.b = obstacle.Boss(common.r6,common.mids_r)
+    else :
+        try:
+            check.check(config.b.x,config.b.y,"Boss")
+            if randint(0,5) == 1 :
+                config.b.shoot(config.m.x)
+        except config.Mario_Above:
+            config.stage = "won"
 
+#the gravity effect is created here 
 def check_floor():
     if common.value_arr(config.m.x, config.m.y+1) != "0":
         while(common.value_arr(config.m.x, config.m.y+1) != "0"):
@@ -120,10 +153,17 @@ def check_floor():
 
 
 def create_scene():
-    create_floor()
+    create_Floor()
     if config.m != "":
-        create_Wall()
-        create_Enemy()
-        create_Gap()
-        create_Platform()
-        create_Marijuana()
+        if config.level == 1 :
+            create_Wall()
+            create_Enemy()
+            create_Gap()
+            create_Platform()
+            create_Marijuana()
+            create_Star()
+            create_Fish()
+        elif config.level == 2:
+            create_Boss()
+            create_Platform()
+            create_Star()

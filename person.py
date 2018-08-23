@@ -5,8 +5,9 @@ import movement
 import check
 import config
 import thing
+import sound
 
-
+#for mario and enemy , this is the core class 
 class Person(thing.Thing):
     def __init__(self, x, y):
         self.x = x
@@ -15,9 +16,9 @@ class Person(thing.Thing):
         self.print_out()
 
     def jump(self):
-        self.move(self.x+2, self.y-2)
+        self.move(self.x+3, self.y-3)
 
-
+    #drop is for gravity effect - mario and enemy - when they fall into a pit/gap
     def drop(self):
         if self.y >= common.mids_r and common.value_arr(self.x, self.y+1) != '0':
 
@@ -37,6 +38,14 @@ class Mario(Person):
 
     def move(self, x, y):
 
+        #when Mario hits the Marijuana
+        if common.value_arr(x,y) == "$":
+            sound.PlaySound("mb_sc.wav")
+            for i in config.m_list:
+                if (i.x == x or i.x == x+1 or i.x == x-1 ) and (i.y == y or i.y == y+1 or i.y == y-1):
+                    config.points += 20
+                    config.m_list.remove(i)
+        
         if (x > common.r3 and x < common.r4):
             check.check_life(x, y, "Mario")
             super().move(x, y)
@@ -75,6 +84,8 @@ class Enemy(Person):
         except config.Wall_Here:
             pass
         except config.Mario_Above:
+            #enemy getting killed because of mario jumping on it
+            sound.PlaySound("mb_touch.wav")
             config.e_list.remove(self)
             self.refresh_out()
             config.points += 10

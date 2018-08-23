@@ -4,6 +4,7 @@ import os
 import sys
 import config
 import time
+import sound
 
 
 #boundary varibales 
@@ -35,7 +36,7 @@ def value_arr(x, y):
     return(ARR[x][y])
 
 def print_all():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("tput reset")
     for j in range(1,rows+1):
         for i in range(1,cols+1):
             sys.stdout.write(ARR[i][j])
@@ -43,12 +44,11 @@ def print_all():
         if j < rows:
             sys.stdout.write("\n")
     
-    print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.points)+"\t\t\tLIVES: "+str(config.lives)+"\n")   
+    print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.points)+"\t\t\tLIVES: "+str(config.lives)+"\t\t\tLEVEL: " +str(config.level)+"\n")   
 
-    
-    
+#deletes all the copies of data present and ARR is also cleaned out  
 def restart_all():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("tput reset")
     global ARR
     ARR= np.full((cols+1,rows+1)," ",dtype=np.unicode)
     config.m = ""
@@ -57,8 +57,22 @@ def restart_all():
     config.p_list = []
     config.g_list = []
     config.m_list = []
+    config.time_start = 0
     print_all()
     time.sleep(0.2)
 
+#game over because of quiting or winning the game or losing the game
 def game_over():
+    sound.PlaySound("nsmb_game_over.wav") 
     restart_all()
+    os.system("tput reset")
+    print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.points)+"\t\t\tLIVES: "+str(config.lives)+"\n")   
+    if config.stage == "won":
+        print("WON WON WON !!!\n")
+    elif config.stage == "quit":
+        print("QUIT !\n")
+    else:
+        print("LOST SORRY !\n")
+    
+
+    

@@ -1,48 +1,52 @@
-#import sys
-#import termios
-#import tty
 import os
 import time
-#from random import randint
-#import shutil
-#import numpy as np
+
 
 # import local files
 import create_scenery
 import config
 import common
+import sound
 
 char = ''
 
-while True:
-    
+while (config.stage == "losing"):
     try :
-        if config.m == "":
-            time.sleep(0.1)
-            
+        #for next level
+        if config.points > 50 and config.level == 1:
+            config.level = 2
+            common.restart_all()
+            config.lives = 10
+
+        #if mario goes below the floor level             
         if config.m != "" and config.m.y > common.mids_r:
             raise config.Dead_Mario
-        char = config.get_key(config.get_input())
 
-        # creates the whole scene and creates the gravity effect too
+
+        #create the scene depending on the level
         create_scenery.create_scene()
         if config.m is not "":
             if (char != config.JUMP):
                 create_scenery.check_floor()
         common.print_all()
 
+        #get input from user 
+        char = config.get_key(config.get_input())
+
         if (char == config.QUIT):
             # shut down all [q]
-            os.system('cls' if os.name == 'nt' else 'clear')
-            exit(0)
+            config.stage = "quit"
+            common.game_over()
+
 
         if (char == config.START):
             # create a Person [m]
+            sound.PlaySound("mb_new.wav")
             create_scenery.create_Mario()
 
         elif (char == config.BREAK):
             # break the loop [s]
-            os.system('cls' if os.name == 'nt' else 'clear')
+            os.system("tput reset")
             break
 
         elif (char == config.RIGHT):
@@ -57,13 +61,19 @@ while True:
 
         elif (char == config.JUMP):
             # Person jumping [d]
+            sound.PlaySound("mb_jump.wav")
             if config.m is not "":
                 config.m.jump()
 
     except config.Dead_Mario:
+        sound.PlaySound("mb_die.wav")
         config.lives -= 1
         if config.lives > 0:
             common.restart_all()
         else :
             common.game_over()
             break
+
+
+time.sleep(5)
+exit(0)

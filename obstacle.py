@@ -8,7 +8,6 @@ class Wall(thing.Thing):
     def __init__(self, x):
         super().__init__(x, common.mids_r)
 
-    # move is needed for move_all_left
     def move(self, x):
         super().move(x, self.y, "Wall")
 
@@ -75,5 +74,49 @@ class Marijuana(thing.Thing):
     def print_out(self):
         for j in range(0, 2):
             for i in range(-1, 2):
-                common.set_arr(self.x+i, self.y+j, "*")
+                common.set_arr(self.x+i, self.y+j, "$")
 
+class Bullet(thing.Thing):
+    def __init__(self, x,y,dir):
+        self.dir = dir
+        super().__init__(x,y)
+
+    def move(self, x):
+        super().move(x, self.y, "Bullet")
+
+    def refresh_out(self):
+        common.reset_arr(self.x, self.y)
+
+    def print_out(self):
+        common.set_arr(self.x, self.y, "-")
+
+
+class Boss(thing.Thing):
+    def __init__(self, x,y):
+        super().__init__(x,y)
+
+    def move(self, x):
+        super().move(x, self.y, "Boss")
+
+    def shoot(self,x):
+        dir = 0
+        if x > self.x :
+            dir = 1
+        else :
+            dir = -1
+
+        b = Bullet(self.x+dir,self.y,dir)
+        config.b_list.append(b)
+
+        for i in config.b_list:
+            i.move(i.x+i.dir)
+
+    def refresh_out(self):
+        for i in range(0,3):
+            for j in range(i-3,3-i):
+                common.reset_arr(self.x+j,self.y+i)
+
+    def print_out(self):
+        for i in range(0,3):
+            for j in range(i-3,3-i):
+                common.set_arr(self.x+j,self.y-i,"B")

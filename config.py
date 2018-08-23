@@ -1,14 +1,21 @@
 # common variables
 m = ""
+b = ""
 e_list = []
 w_list = []
 p_list = []
 g_list = []
 m_list = []
+f_list = []
+s_list = []
+b_list = []
 lives = 3
 points = 0
+time_start = 0
+level = 1
+stage = "losing"
 
-Obstacles = ["Wall", "Platform", "Marijuana", "Gap"]
+Elements = ["Wall", "Platform", "Marijuana", "Gap","Fish","Star","Boss","Bullet"]
 
 '''
     Allow certain inputs and translate to easier to read format
@@ -22,7 +29,7 @@ Obstacles = ["Wall", "Platform", "Marijuana", "Gap"]
 '''
 
 # key presses
-START, BREAK, RIGHT, LEFT, JUMP, GUN, QUIT = range(7)
+START, BREAK, RIGHT, LEFT, JUMP,  QUIT = range(6)
 DIR = [JUMP, BREAK, START, RIGHT, LEFT]
 INVALID = -1
 
@@ -33,30 +40,24 @@ _allowed_inputs = {
     START: ['m', '\x1b[D'],
     RIGHT: ['a', '\x1b[C'],
     LEFT: ['w', '\x1b[E'],
-    GUN: ['b'],
     QUIT: ['q']
 }
 
-
+#contains all the exceptions used 
 class Dead_Mario(Exception):
     pass
-
 
 class Touch_Boundary(Exception):
     pass
 
-
 class Wall_Here(Exception):
     pass
-
 
 class Gap_Here(Exception):
     pass
 
-
 class Enemy_Here(Exception):
     pass
-
 
 class Platform_Here(Exception):
     pass
@@ -64,6 +65,7 @@ class Platform_Here(Exception):
 class Mario_Above(Exception):
     pass
 
+#functions for getting the input key
 def get_key(key):
     for x in _allowed_inputs:
         if key in _allowed_inputs[x]:
