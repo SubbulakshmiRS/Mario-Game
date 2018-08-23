@@ -1,12 +1,11 @@
-import sys
-import termios
-import tty
+#import sys
+#import termios
+#import tty
 import os
-import time
-from random import randint
-import shutil
-import numpy as np
-from colorama import Fore, Back, Style
+#import time
+#from random import randint
+#import shutil
+#import numpy as np
 
  # import local files
 import create_scenery
@@ -17,44 +16,40 @@ char = ''
 
 while True:
     char=config.get_key(config.get_input())
+
+    # creates the whole scene and creates the gravity effect too 
     create_scenery.create_scene()
     if config.m is not "":
         if (char != config.JUMP):
             create_scenery.check_floor()    
     common.print_all()
     
-    #print(char)
-    #continue
 
     if (char == config.QUIT):
         # shut down all [q]
-        print(Style.RESET_ALL)
         os.system('cls' if os.name == 'nt' else 'clear')
         exit(0)
 
     if (char == config.START):
-        # create a Person [a]
+        # create a Person [m]
         create_scenery.create_Mario()
 
     elif (char == config.BREAK):
         # break the loop [s]
         os.system('cls' if os.name == 'nt' else 'clear')
         break
-        # time.sleep(button_delay)
 
     elif (char == config.RIGHT):
-        # Person moving right[d]
+        # Person moving right[a]
         if config.m is not "":
             config.m.move(config.m.x+1, config.m.y)
-        # time.sleep(button_delay)
+
+    elif (char == config.LEFT):
+        # Person moving left[w]
+        pass
 
     elif (char == config.JUMP):
-        # Person  [w]
+        # Person jumping [d]
         if config.m is not "":
             config.m.jump()
-        # time.sleep(button_delay)
 
-    elif (char == "1"):
-        print("Number 1 pressed")
-        # pppptime.sleep(button_delay)
-    time.sleep(0.1)

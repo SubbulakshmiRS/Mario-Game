@@ -3,7 +3,6 @@ import config
 
 def move_all_left(x):
     #bcoz Mario is moving right by this much
-    #but change y
     death =0
     delete_elements(x)
     for i in range(x,common.cols):

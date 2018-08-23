@@ -7,27 +7,31 @@ g_list = []
 m_list = []
 lives = 3
 
+Obstacles = ["Wall","Platform","Marijuana","Gap"]
+
 '''
     Allow certain inputs and translate to easier to read format
     START : 0
     BREAK : 1
     RIGHT : 2
-    JUMP : 3
-    GUN : 4
-    QUIT : 5
+    LEFT : 3
+    JUMP : 4
+    GUN : 5
+    QUIT : 6
 '''
 
 # key presses
-START, BREAK, RIGHT, JUMP, GUN, QUIT = range(6)
-DIR = [JUMP, BREAK, START, RIGHT]
+START, BREAK, RIGHT, LEFT ,JUMP, GUN, QUIT = range(7)
+DIR = [JUMP, BREAK, START, RIGHT, LEFT]
 INVALID = -1
 
 # allowed inputs
 _allowed_inputs = {
-    JUMP      : ['w', '\x1b[A'], \
+    JUMP      : ['d', '\x1b[A'], \
     BREAK    : ['s', '\x1b[B'], \
-    START    : ['a', '\x1b[D'], \
-    RIGHT   : ['d', '\x1b[C'], \
+    START    : ['m', '\x1b[D'], \
+    RIGHT   : ['a', '\x1b[C'], \
+    LEFT    : ['w', '\x1b[E'], \
     GUN    : ['b'],           \
     QUIT    : ['q']
 }

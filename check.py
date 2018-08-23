@@ -10,8 +10,6 @@ def check_life(x,y,who):
             raise config.Enemy_Here
         elif common.value_arr(x,y) == "|":
             raise config.Wall_Here
-        elif common.value_arr(x,y) == "-":
-            raise config.Gap_Here 
     elif who is "Mario" :
         if common.value_arr(x,y) != " ":
             raise config.Dead_Mario

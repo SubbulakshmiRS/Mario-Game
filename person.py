@@ -8,42 +8,40 @@ import thing
 
 class Person(thing.Thing):
     def __init__(self, x, y):
-        super().__init__(x,y)
-
-    def move(self, x, y):
-        self.x = x
-        self.y = y
+        self.x=x
+        self.y=y
+        self.check()
+        self.print_out()
 
     def jump(self):
         self.move(self.x+1,self.y-1)
+    
+    def drop(self):
+        if common.value_arr(self.x,self.y+1) != '0':
+            if self.y > (common.mids_r + 3):
+                raise config.Gap_Here
+            else:
+                self.move(self.x,self.y+1)
 
 
 class Mario(Person):
     def __init__(self,x,y):
         super().__init__(x,y)
-        self.print_out()
 
     def move(self,x,y):
         if (x > common.r3 and x < common.r4 ):
             check.check_life(x,y,"Mario")
-            self.refresh_out()
             super().move(x,y)
-            self.print_out()
 
         else :
             movement.move_all_left(x-self.x)
             check.check_life(self.x,y,"Mario")
-            self.refresh_out()
             super().move(self.x,y)
-            self.print_out()
 
         try :
-            self.check()
+            self.drop()
         except config.Gap_Here:
-            try:
-                self.drop()
-            except config.Gap_Here:
-                raise config.Dead_Mario from None
+            raise config.Dead_Mario from None
 
     def print_out(self):
         common.set_arr(self.x,self.y,"I")
@@ -59,31 +57,20 @@ class Mario(Person):
 class Enemy(Person):
     def __init__(self,x,y):
         super().__init__(x,y)
-        self.print_out()
 
     def move(self,x,y):
         try :
             check.check(x,y,"Enemy")
-            self.refresh_out()
             super().move(x,y)
-            self.print_out()
-            self.check()
-        except config.Gap_Here:
-            try :
-                self.drop()
-            except config.Gap_Here:
-                config.e_list.remove(self)
-                self.refresh_out()
-        except config.Touch_Boundary:
+            self.drop()
+        except (config.Gap_Here,config.Touch_Boundary):
             config.e_list.remove(self)
-            self.refresh_out()  
+            self.refresh_out()
         except config.Wall_Here:
             pass
         except config.Dead_Mario:
-            self.refresh_out()
             config.m.refresh_out()
             super().move(x,y)
-            self.print_out()
             raise config.Dead_Mario from None
 
     def refresh_out(self):

@@ -14,9 +14,12 @@ create_scenery.py
 config.py
 - all the characters which we input , common variables 
 
-Wall.py
+obstacle.py
 - full definition of Wall 
-- create wall 
+- create Wall 
+- create Platform
+- create Marijuana(functionality and point left)
+- create Gap
 
 Person.py
 - full definition of Person , Enemy and Mario ( child classes )
@@ -29,7 +32,6 @@ check.py
 - func for checking boundary 
 
 to do 
-- proper imports (not unneccesary and repetitive)
 - delete all elements touching the boundary
 - not allow elements to be created at the boundary
 - all references should be towards rows, cols and such variables
@@ -38,11 +40,8 @@ to do
 - sound effect (famous song)
 - update config to add colors and new variables
 - more inheritance and OOPS(private var , encapsulation , ...)
-- need to create more platforms(flying ones) and lava
 - levels and tunnels(not neccesary)
 - documentation like README.md using markdown and requirements.txt ,etc (refer seniors game)
-- create differents errors and raise then instead of variables for start , dead and returning random numbers
-- git commits
 - autopep8 and variable names 
 - no dead codes just commented out 
 

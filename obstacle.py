@@ -5,20 +5,12 @@ import thing
 
 class Wall(thing.Thing):
     def __init__(self, x):
-        self.x = x
-        self.y = common.mids_r
-        self.check()
-        self.print_out()
+        super().__init__(x,common.mids_r)
 
-    # wall should not move
+    # move is needed for move_all_left 
     def move(self, x):
-        try :
-            check.check(x,self.y,"Wall")
-            self.refresh_out()
-            self.x = x
-            self.print_out()
-        except config.Touch_Boundary:
-            w_list.remove(self)
+        super().move(x,self.y,"Wall")
+
 
     def refresh_out(self):
         for j in {-4,-3,-2,-1,0}:
@@ -37,12 +29,9 @@ class Wall(thing.Thing):
 class Platform(thing.Thing):
     def __init__(self,x,y):
         super().__init__(x,y)
-        self.print_out()
 
-    def move(self,x):
-        self.refresh_out()
-        self.x=x
-        self.print_out()
+    def move(self, x):
+        super().move(x,self.y,"Platform")
 
     def refresh_out(self):
         for i in {-2,-1,0,1,2}:
@@ -54,14 +43,11 @@ class Platform(thing.Thing):
 
 
 class Gap(thing.Thing):
-    def __init__(self,x,y):
-        super().__init__(x,y)
-        self.print_out()
-    
-    def move(self,x):
-        self.refresh_out()
-        self.x=x
-        self.print_out()
+    def __init__(self,x):
+        super().__init__(x,common.mids_r+1)
+
+    def move(self, x):
+        super().move(x,self.y,"Gap")
 
     def refresh_out(self):
         for i in {-1,0,1}:
@@ -74,15 +60,14 @@ class Gap(thing.Thing):
 
 class Marijuana(thing.Thing):
     def __init__(self,x):
-        y=common.mids_r-4
-        super().__init__(x,y)
+        self.x=x
+        self.y=y
         check.check(self.x,self.y,"Marijuana")
         self.print_out()
-
-    def move(self,x):
-        self.refresh_out()
-        self.x=x
-        self.print_out()
+    
+    #needed for move_all_left
+    def move(self, x):
+        super().move(x,self.y,"Marijuana")
 
     def refresh_out(self):
         for j in range(0,2):
