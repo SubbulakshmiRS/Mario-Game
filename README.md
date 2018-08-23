@@ -22,13 +22,15 @@ Run the code for the game
 
 ## *Inputs for the Mario*
 Input the corresponding characters for Mario to do the following action in the game
-> Start : 'a'
+> Start : 'm'
 
 >Break : 's'
 
->Right : 'd'
+>Left : 'w'
 
->Jump : 'w'
+>Right : 'a'
+
+>Jump : 'd'
 
 >Gun : 'b'
 

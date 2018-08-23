@@ -54,11 +54,12 @@ def create_Wall():
         if (randint(0, 10) == 5):
             # create a obstacle
             pos = config.w_list[-1].x + randint(10,20)
-            try :
-                w = obstacle.Wall(pos)
-                config.w_list.append(w)
-            except config.Gap_Here:
-                pass
+            if pos < common.cols - 3:
+                try :
+                    w = obstacle.Wall(pos)
+                    config.w_list.append(w)
+                except config.Gap_Here:
+                    pass
                 
     else :
         pass
@@ -82,10 +83,10 @@ def create_Platform():
 def create_Gap():
 
     if config.g_list == []:
-        g=obstacle.Gap(randint(config.m.x +2,common.cols-1))
+        g=obstacle.Gap(randint(config.m.x +2,common.cols-2))
         config.g_list.append(g)
     elif(randint(0,10) == 1):
-        g=obstacle.Gap(randint(config.m.x +2,common.cols-1))
+        g=obstacle.Gap(randint(config.m.x +2,common.cols-2))
         config.g_list.append(g)
 
 def create_Marijuana():
