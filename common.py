@@ -70,7 +70,7 @@ def restart_all():
 
 
 def game_over():
-    sound.PlaySound("nsmb_game_over.wav")
+    sound.play_sound("nsmb_game_over.wav")
     restart_all()
     os.system("tput reset")
     print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.POINTS) +

@@ -39,7 +39,7 @@ while config.STAGE == "losing":
 
         if Char == config.START:
             # create a Person [m]
-            sound.PlaySound("mb_new.wav")
+            sound.play_sound("mb_new.wav")
             create_scenery.create_mario()
 
         elif Char == config.BREAK:
@@ -59,13 +59,13 @@ while config.STAGE == "losing":
 
         elif Char == config.JUMP:
             # Person jumping [d]
-            sound.PlaySound("mb_jump.wav")
+            sound.play_sound("mb_jump.wav")
             if config.M != "":
                 config.M.jump()
 
     except config.DeadMario:
         common.print_all()
-        sound.PlaySound("mb_die.wav")
+        sound.play_sound("mb_die.wav")
         config.LIVES -= 1
         if config.LIVES > 0:
             common.restart_all()

@@ -1,5 +1,3 @@
-import time
-
 import common
 import movement
 import check
@@ -44,7 +42,7 @@ class Mario(Person):
     def move(self, x, y):
         # when Mario hits the Marijuana
         if common.value_arr(x, y) == "$":
-            sound.PlaySound("mb_sc.wav")
+            sound.play_sound("mb_sc.wav")
             for i in config.M_LIST:
                 if (i.x_pos == x or i.x_pos == x+1 or i.x_pos == x-1) and (i.y_pos == y or i.y_pos == y+1 or i.y_pos == y-1):
                     config.POINTS += 20
@@ -90,7 +88,7 @@ class Enemy(Person):
             pass
         except config.MarioAbove:
             # enemy getting killed because of mario jumping on it
-            sound.PlaySound("mb_touch.wav")
+            sound.play_sound("mb_touch.wav")
             config.E_LIST.remove(self)
             self.refresh_out()
             config.POINTS += 10
