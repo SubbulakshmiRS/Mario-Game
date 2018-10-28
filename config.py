@@ -30,7 +30,7 @@ Elements = ["Wall", "Platform", "Marijuana",
 '''
 
 # key presses
-START, BREAK, RIGHT, LEFT, JUMP,  QUIT = range(6)
+START, BREAK, RIGHT, LEFT, JUMP, QUIT = range(6)
 DIR = [JUMP, BREAK, START, RIGHT, LEFT]
 INVALID = -1
 

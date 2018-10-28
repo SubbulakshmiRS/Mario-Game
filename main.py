@@ -40,7 +40,7 @@ while config.stage == "losing":
         if Char == config.START:
             # create a Person [m]
             sound.PlaySound("mb_new.wav")
-            create_scenery.create_Mario()
+            create_scenery.create_mario()
 
         elif Char == config.BREAK:
             # break the loop [s]
