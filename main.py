@@ -10,21 +10,21 @@ import sound
 
 Char = ''
 
-while config.stage == "losing":
+while config.STAGE == "losing":
     try:
-        # for next level
-        if config.points > 50 and config.level == 1:
-            config.level = 2
+        # for next LEVEL
+        if config.POINTS > 50 and config.LEVEL == 1:
+            config.LEVEL = 2
             common.restart_all()
-            config.lives = 10
+            config.LIVES = 10
 
-        # if mario goes below the floor level
-        if config.m != "" and config.m.y > common.mids_r:
-            raise config.Dead_Mario
+        # if mario goes below the floor LEVEL
+        if config.M != "" and config.M.y_pos > common.mids_r:
+            raise config.DeadMario
 
-        # create the scene depending on the level
+        # create the scene depending on the LEVEL
         create_scenery.create_scene()
-        if config.m != "":
+        if config.M != "":
             if Char != config.JUMP:
                 create_scenery.check_floor()
         common.print_all()
@@ -34,7 +34,7 @@ while config.stage == "losing":
 
         if Char == config.QUIT:
             # shut down all [q]
-            config.stage = "quit"
+            config.STAGE = "quit"
             common.game_over()
 
         if Char == config.START:
@@ -49,25 +49,25 @@ while config.stage == "losing":
 
         elif Char == config.RIGHT:
             # Person moving right[a]
-            if config.m != "":
-                config.m.move(config.m.x+2, config.m.y)
+            if config.M != "":
+                config.M.move(config.M.x_pos+2, config.M.y_pos)
 
         elif Char == config.LEFT:
             # Person moving left[w]
-            if config.m != "":
-                config.m.move(config.m.x-2, config.m.y)
+            if config.M != "":
+                config.M.move(config.M.x_pos-2, config.M.y_pos)
 
         elif Char == config.JUMP:
             # Person jumping [d]
             sound.PlaySound("mb_jump.wav")
-            if config.m != "":
-                config.m.jump()
+            if config.M != "":
+                config.M.jump()
 
-    except config.Dead_Mario:
+    except config.DeadMario:
         common.print_all()
         sound.PlaySound("mb_die.wav")
-        config.lives -= 1
-        if config.lives > 0:
+        config.LIVES -= 1
+        if config.LIVES > 0:
             common.restart_all()
         else:
             common.game_over()

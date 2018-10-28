@@ -1,0 +1,246 @@
+README.md:> pip3 install -r requirements.txt
+Binary file __pycache__/check.cpython-35.pyc matches
+Binary file __pycache__/common.cpython-35.pyc matches
+Binary file __pycache__/common.cpython-36.pyc matches
+Binary file __pycache__/config.cpython-35.pyc matches
+Binary file __pycache__/create_scenery.cpython-35.pyc matches
+Binary file __pycache__/create_scenery.cpython-36.pyc matches
+Binary file __pycache__/movement.cpython-35.pyc matches
+Binary file __pycache__/obstacle.cpython-35.pyc matches
+Binary file __pycache__/person.cpython-35.pyc matches
+Binary file __pycache__/person.cpython-36.pyc matches
+Binary file __pycache__/scene.cpython-35.pyc matches
+Binary file __pycache__/thing.cpython-35.pyc matches
+check.py:def check_life(x, y, who):
+check.py:        if common.value_arr(x-1, y) in {"^", "O", "I"}:
+check.py:        if (common.value_arr(x, y) in {"<", ">"}):
+check.py:        elif common.value_arr(x, y) == "|":
+check.py:        elif common.value_arr(x, y+1) != "0":
+check.py:        elif common.value_arr(x, y-1) in {"^", "O", "I"}:
+check.py:        if common.value_arr(x, y) not in {" ", "I", "O", "^", "$"}:
+check.py:                if common.value_arr(x+i, y+j) in {"^", "O", "I"}:
+check.py:                if common.value_arr(x+i, y+j) in {"|", "-"}:
+check.py:        if common.value_arr(x, y-4) == "I":
+check.py:def check_boundary(x, y):
+check.py:    if x == 1 or x == common.cols or y == 1 or y == common.rows:
+check.py:def check(x, y, who):
+check.py:    check_life(x, y, who)
+check.py:    check_boundary(x, y)
+common.py:def set_arr(x, y, symbol):
+common.py:    ARR[x][y] = symbol
+common.py:def reset_arr(x, y):
+common.py:    ARR[x][y] = " "
+common.py:def value_arr(x, y):
+common.py:    return(ARR[x][y])
+config.py:    JUMP: ['d', '\x1b[A'],
+config.py:    BREAK: ['s', '\x1b[B'],
+config.py:    START: ['m', '\x1b[D'],
+config.py:    RIGHT: ['a', '\x1b[C'],
+config.py:    LEFT: ['w', '\x1b[E'],
+config.py:# contains all the exceptions used
+config.py:class DeletedElement(Exception):
+config.py:class DeadMario(Exception):
+config.py:class TouchBoundary(Exception):
+config.py:class WallHere(Exception):
+config.py:class GapHere(Exception):
+config.py:class EnemyHere(Exception):
+config.py:class PlatformHere(Exception):
+config.py:class MarioAbove(Exception):
+config.py:    for x in _allowed_inputs:
+config.py:        if key in _allowed_inputs[x]:
+config.py:            return x
+config.py:        except ImportError:
+config.py:            self.impl = _GetchUnix()
+config.py:class _GetchUnix:
+config.py:    Get inputted character for Unix operating system
+config.py:class AlarmException(Exception):
+config.py:    Alarm exception
+config.py:    raise AlarmException
+config.py:        text = _getch()
+config.py:        return text
+config.py:    except AlarmException:
+create_scenery.py:        except (config.EnemyHere, config.GapHere):
+create_scenery.py:            i.move(i.x_pos-2, i.y_pos)
+create_scenery.py:        except config.WallHere:
+create_scenery.py:        except config.EnemyHere:
+create_scenery.py:    Create Mario from fixed coordinates for the given screen space
+create_scenery.py:        pos = randint(config.M.x_pos+4, common.r2)
+create_scenery.py:            except config.GapHere:
+create_scenery.py:            pos = config.W_LIST[-1].x_pos + randint(10, 20)
+create_scenery.py:                except config.GapHere:
+create_scenery.py:            randint(config.M.x_pos+2, common.cols-5), randint(common.r1_r, common.mids_r-5))
+create_scenery.py:            pos = config.P_LIST[-1].x_pos + randint(7, 15)
+create_scenery.py:        xitem = randint(-3, 3)+i.x_pos
+create_scenery.py:        i.move(xitem)
+create_scenery.py:        gitem = obstacle.Gap(randint(config.M.x_pos + 2, common.cols-2))
+create_scenery.py:        gitem = obstacle.Gap(randint(config.M.x_pos + 2, common.cols-2))
+create_scenery.py:        i.move(i.x_pos+1)
+create_scenery.py:        except (config.DeadMario, config.WallHere):
+create_scenery.py:    elif len(config.M_LIST) <= max(len(config.W_LIST), int(common.cols/20)):
+create_scenery.py:        pos = config.M_LIST[-1].x_pos + randint(5, 10)
+create_scenery.py:            except (config.DeadMario, config.WallHere):
+create_scenery.py:            check.check(config.B.x_pos, config.B.y_pos, "Boss")
+create_scenery.py:                config.B.shoot(config.M.x_pos)
+create_scenery.py:        except config.MarioAbove:
+create_scenery.py:    if common.value_arr(config.M.x_pos, config.M.y_pos+1) != "0":
+create_scenery.py:        while common.value_arr(config.M.x_pos, config.M.y_pos+1) != "0":
+create_scenery.py:            config.M.move(config.M.x_pos, config.M.y_pos+1)
+docs:- floor should be constant except when lava is there (have to make it )
+docs:- documentation like README.md using markdown and requirements.txt(!!!) ,etc (refer seniors game)
+docs:- requirements.txt
+main.py:        # for next LEVEL
+main.py:                config.M.move(config.M.x_pos+2, config.M.y_pos)
+main.py:                config.M.move(config.M.x_pos-2, config.M.y_pos)
+main.py:    except config.DeadMario:
+main.py:exit(0)
+movement.py:def move_all_left_right(x1, x2):
+movement.py:    delete_elements(x1, x2)
+movement.py:    a = b = x = 0
+movement.py:    if x2 == common.cols:
+movement.py:        a = x1
+movement.py:        x = x1-x2
+movement.py:    elif x1 == 0:
+movement.py:        a = x2
+movement.py:        x = x2-x1
+movement.py:        death = replace(reversed(range(b, a)), x)
+movement.py:        death = replace(range(a, b), x)
+movement.py:        i.change(i.x_pos-x, i.y_pos)
+movement.py:        config.B.change(config.B.x_pos-x, config.B.y_pos)
+movement.py:def delete_elements(x1, x2):
+movement.py:    # delete all the elements which are in range x1 to x2
+movement.py:        if i.x_pos in range(x1, x2):
+movement.py:        if i.x_pos in range(x1, x2):
+movement.py:        if i.x_pos in range(x1, x2):
+movement.py:        if i.x_pos in range(x1, x2):
+movement.py:        if i.x_pos in range(x1, x2):
+movement.py:        if i.x_pos in range(x1, x2):
+movement.py:        if i.x_pos in range(x1, x2):
+movement.py:def move_all(x):
+movement.py:    x1 = x2 = 0
+movement.py:    if x > 0:
+movement.py:        x1 = 0
+movement.py:        x2 = x
+movement.py:    elif x < 0:
+movement.py:        x1 = common.cols+x
+movement.py:        x2 = common.cols
+movement.py:    move_all_left_right(x1, x2)
+movement.py:def replace(r, x):
+movement.py:            if common.ARR[i-x][j] in {"^", "O", "I"} and common.ARR[i][j] not in {" ", "^", "O", "I"}:
+movement.py:            common.ARR[i-x][j] = common.ARR[i][j]
+obstacle.py:    def __init__(self, x):
+obstacle.py:        super().__init__(x, common.mids_r)
+obstacle.py:    def move(self, x, y='?', who='?'):
+obstacle.py:            super().move(x,y,who)
+obstacle.py:        except config.DeletedElement:
+obstacle.py:                common.reset_arr(self.x_pos+i, self.y_pos+j)
+obstacle.py:                common.set_arr(self.x_pos+i, self.y_pos+j, "|")
+obstacle.py:            common.set_arr(self.x_pos, self.y_pos+j, "-")
+obstacle.py:    def __init__(self, x, y):
+obstacle.py:        super().__init__(x, y)
+obstacle.py:    def move(self, x, y='?', who='?'):
+obstacle.py:            super().move(x,y,who)
+obstacle.py:        except config.DeletedElement:
+obstacle.py:            common.reset_arr(self.x_pos+i, self.y_pos)
+obstacle.py:            common.set_arr(self.x_pos+i, self.y_pos, "0")
+obstacle.py:    def __init__(self, x):
+obstacle.py:        super().__init__(x, common.mids_r+1)
+obstacle.py:    def move(self, x, y='?', who='?'):
+obstacle.py:            super().move(x,y,who)
+obstacle.py:        except config.DeletedElement:
+obstacle.py:            common.reset_arr(self.x_pos+i, self.y_pos)
+obstacle.py:            common.set_arr(self.x_pos+i, self.y_pos, "-")
+obstacle.py:    def __init__(self, x):
+obstacle.py:        self.x_pos = x
+obstacle.py:        check.check(self.x_pos, self.y_pos, "Marijuana")
+obstacle.py:    def move(self, x, y='?', who='?'):
+obstacle.py:            super().move(x,y,who)
+obstacle.py:        except config.DeletedElement:
+obstacle.py:                common.reset_arr(self.x_pos+i, self.y_pos+j)
+obstacle.py:                common.set_arr(self.x_pos+i, self.y_pos+j, "$")
+obstacle.py:    def __init__(self, x, y, dir):
+obstacle.py:        super().__init__(x, y)
+obstacle.py:    def move(self, x, y='?', who='?'):
+obstacle.py:            super().move(x,y,who)
+obstacle.py:        except config.DeletedElement:
+obstacle.py:        common.reset_arr(self.x_pos, self.y_pos)
+obstacle.py:        common.set_arr(self.x_pos, self.y_pos, "-")
+obstacle.py:    def __init__(self, x, y):
+obstacle.py:        super().__init__(x, y)
+obstacle.py:    def move(self, x, y='?', who='?'):
+obstacle.py:            super().move(x,y,who)
+obstacle.py:        except config.DeletedElement:
+obstacle.py:    def shoot(self, x):
+obstacle.py:        if x > self.x_pos:
+obstacle.py:        b = Bullet(self.x_pos+dir, self.y_pos, dir)
+obstacle.py:            i.move(i.x_pos+i.dir)
+obstacle.py:                common.reset_arr(self.x_pos+j, self.y_pos+i)
+obstacle.py:                common.set_arr(self.x_pos+j, self.y_pos-i, "B")
+person.py:    def __init__(self, x, y):
+person.py:        self.x_pos = x
+person.py:    def move(self, x, y='?', who='?'):
+person.py:        super().move(x, y, who)
+person.py:        self.move(self.x_pos+3, self.y_pos-3)
+person.py:        if self.y_pos > common.mids_r and common.value_arr(self.x_pos, self.y_pos+1) != '0':
+person.py:                self.move(self.x_pos, self.y_pos+1)
+person.py:    def __init__(self, x, y):
+person.py:        super().__init__(x, y)
+person.py:    def move(self, x, y):
+person.py:        if common.value_arr(x, y) == "$":
+person.py:                if (i.x_pos == x or i.x_pos == x+1 or i.x_pos == x-1) and (i.y_pos == y or i.y_pos == y+1 or i.y_pos == y-1):
+person.py:            if (x > common.r3 and x < common.r4):
+person.py:                check.check_life(x, y, "Mario")
+person.py:                super().move(x, y)
+person.py:                movement.move_all(x-self.x_pos)
+person.py:                check.check_life(self.x_pos, y, "Mario")
+person.py:                super().move(self.x_pos, y, "Mario")
+person.py:        except config.GapHere:
+person.py:        common.set_arr(self.x_pos, self.y_pos, "I")
+person.py:        common.set_arr(self.x_pos, self.y_pos-1, "O")
+person.py:        common.set_arr(self.x_pos, self.y_pos-2, "^")
+person.py:            common.reset_arr(self.x_pos, self.y_pos+i)
+person.py:    def __init__(self, x, y):
+person.py:        super().__init__(x, y)
+person.py:    def move(self, x, y):
+person.py:            check.check(x, y, "Enemy")
+person.py:            super().move(x, y)
+person.py:        except (config.GapHere, config.TouchBoundary):
+person.py:        except config.WallHere:
+person.py:        except config.MarioAbove:
+person.py:        except config.DeadMario:
+person.py:            super().move(x, y)
+person.py:        common.reset_arr(self.x_pos, self.y_pos)
+person.py:        common.reset_arr(self.x_pos+1, self.y_pos)
+person.py:        common.set_arr(self.x_pos, self.y_pos, ">")
+person.py:        common.set_arr(self.x_pos+1, self.y_pos, "<")
+requirements.txt:lazy-object-proxy==1.3.1
+requirements.txt:six==1.11.0
+scene.py:    def __init__(self, x, y):
+scene.py:        super().__init__(x, y)
+scene.py:    def move(self, x, y='?', who='?'):
+scene.py:            super().move(x, self.y_pos, "Star")
+scene.py:        except config.DeletedElement:
+scene.py:        common.reset_arr(self.x_pos, self.y_pos)
+scene.py:        common.set_arr(self.x_pos, self.y_pos, "*")
+scene.py:    def __init__(self, x, y):
+scene.py:        super().__init__(x, y)
+scene.py:    def move(self, x, y='?', who='?'):
+scene.py:            super().move(x, self.y_pos, "Fish")
+scene.py:        except config.DeletedElement:
+scene.py:                    common.reset_arr(self.x_pos+i, self.y_pos+j)
+scene.py:                    common.reset_arr(self.x_pos+i, self.y_pos)
+scene.py:                    common.set_arr(self.x_pos+i, self.y_pos+j, "@")
+scene.py:                    common.set_arr(self.x_pos+i, self.y_pos, "@")
+thing.py:    def __init__(self, x_pos, y):
+thing.py:        self.x_pos_pos = x_pos
+thing.py:    def move(self, x, y='?', who='?'):
+thing.py:        self.x_pos = x
+thing.py:                check.check_boundary(self.x_pos+4, self.y_pos)
+thing.py:            except config.TouchBoundary:
+thing.py:    def change(self, x, y):
+thing.py:        self.x_pos = x
+Binary file tracks/mb_die.wav matches
+Binary file tracks/mb_jump.wav matches
+Binary file tracks/mb_new.wav matches
+Binary file tracks/mb_sc.wav matches
+Binary file tracks/mb_touch.wav matches
+Binary file tracks/nsmb_game_over.wav matches

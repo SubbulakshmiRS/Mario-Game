@@ -8,7 +8,7 @@ movement.py
 - all enemies and Walls and shit near the boundary should die away - delete_boundary_items (have to make it)
 
 create_scenery.py
-- all common lists e_list ... are defined in this file
+- all common lists E_LIST ... are defined in this file
 - has functions for creating all the elements of scene
 
 config.py
@@ -33,12 +33,12 @@ check.py
 
 to do 
 - all references should be towards rows, cols and such variables
-- make boundary to show the lives left of Mario ,POINTS
+- make boundary to show the LIVES left of Mario ,POINTS
 - create colors (not neccesary)
 - sound effect (famous song)
 - update config to add colors and new variables
 - more inheritance and OOPS(private var , encapsulation , ...)
-- levels and tunnels(not neccesary)
+- LEVELs and tunnels(not neccesary)
 - documentation like README.md using markdown and requirements.txt(!!!) ,etc (refer seniors game)
 - autopep8 and variable names 
 - no dead codes just commented out 
@@ -46,7 +46,7 @@ to do
 - make sure it plays 
 - left motion 
 - one more enemy 
-- points and health
+- POINTS and health
 - scenery 
 - sound
 - requirements.txt

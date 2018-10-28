@@ -46,8 +46,8 @@ def print_all():
         if j < rows:
             sys.stdout.write("\n")
 
-    print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.points) +
-          "\t\t\tLIVES: "+str(config.lives)+"\t\t\tLEVEL: " + str(config.level)+"\n")
+    print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.POINTS) +
+          "\t\t\tLIVES: "+str(config.LIVES)+"\t\t\tLEVEL: " + str(config.LEVEL)+"\n")
 
 # deletes all the copies of data present and ARR is also cleaned out
 
@@ -56,12 +56,12 @@ def restart_all():
     os.system("tput reset")
     global ARR
     ARR = np.full((cols+1, rows+1), " ", dtype=np.unicode)
-    config.m = ""
-    config.e_list = []
-    config.w_list = []
-    config.p_list = []
-    config.g_list = []
-    config.m_list = []
+    config.M = ""
+    config.E_LIST = []
+    config.W_LIST = []
+    config.P_LIST = []
+    config.G_LIST = []
+    config.M_LIST = []
     config.time_start = 0
     print_all()
     time.sleep(0.2)
@@ -73,11 +73,11 @@ def game_over():
     sound.PlaySound("nsmb_game_over.wav")
     restart_all()
     os.system("tput reset")
-    print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.points) +
-          "\t\t\tLIVES: "+str(config.lives)+"\t\t\tLEVEL: " + str(config.level)+"\n")
-    if config.stage == "won":
+    print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.POINTS) +
+          "\t\t\tLIVES: "+str(config.LIVES)+"\t\t\tLEVEL: " + str(config.LEVEL)+"\n")
+    if config.STAGE == "won":
         print("WON WON WON !!!\n")
-    elif config.stage == "quit":
+    elif config.STAGE == "quit":
         print("QUIT !\n")
     else:
         print("LOST SORRY !\n")

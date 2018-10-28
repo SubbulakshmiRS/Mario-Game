@@ -26,56 +26,56 @@ def move_all_left_right(x1, x2):
         death = replace(range(a, b), x)
 
     # change all the lists' data
-    for i in (config.e_list +
-              config.w_list +
-              config.p_list +
-              config.m_list +
-              config.f_list +
-              config.s_list + config.b_list):
-        i.change(i.x-x, i.y)
+    for i in (config.E_LIST +
+              config.W_LIST +
+              config.P_LIST +
+              config.M_LIST +
+              config.F_LIST +
+              config.S_LIST + config.B_LIST):
+        i.change(i.x_pos-x, i.y_pos)
 
-    if config.b != "":
-        config.b.change(config.b.x-x, config.b.y)
+    if config.B != "":
+        config.B.change(config.B.x_pos-x, config.B.y_pos)
 
     if death != 0:
-        raise config.Dead_Mario
+        raise config.DeadMario
 
 
 def delete_elements(x1, x2):
     # delete all the elements which are in range x1 to x2
-    for i in config.e_list:
-        if i.x in range(x1, x2):
-            config.e_list.remove(i)
+    for i in config.E_LIST:
+        if i.x_pos in range(x1, x2):
+            config.E_LIST.remove(i)
             i.refresh_out()
 
-    for i in config.w_list:
-        if i.x in range(x1, x2):
-            config.w_list.remove(i)
+    for i in config.W_LIST:
+        if i.x_pos in range(x1, x2):
+            config.W_LIST.remove(i)
             i.refresh_out()
 
-    for i in config.p_list:
-        if i.x in range(x1, x2):
-            config.p_list.remove(i)
+    for i in config.P_LIST:
+        if i.x_pos in range(x1, x2):
+            config.P_LIST.remove(i)
             i.refresh_out()
 
-    for i in config.m_list:
-        if i.x in range(x1, x2):
-            config.m_list.remove(i)
+    for i in config.M_LIST:
+        if i.x_pos in range(x1, x2):
+            config.M_LIST.remove(i)
             i.refresh_out()
 
-    for i in config.f_list:
-        if i.x in range(x1, x2):
-            config.f_list.remove(i)
+    for i in config.F_LIST:
+        if i.x_pos in range(x1, x2):
+            config.F_LIST.remove(i)
             i.refresh_out()
 
-    for i in config.s_list:
-        if i.x in range(x1, x2):
-            config.s_list.remove(i)
+    for i in config.S_LIST:
+        if i.x_pos in range(x1, x2):
+            config.S_LIST.remove(i)
             i.refresh_out()
 
-    for i in config.b_list:
-        if i.x in range(x1, x2):
-            config.b_list.remove(i)
+    for i in config.B_LIST:
+        if i.x_pos in range(x1, x2):
+            config.B_LIST.remove(i)
             i.refresh_out()
 
 

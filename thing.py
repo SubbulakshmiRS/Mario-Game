@@ -1,50 +1,52 @@
-import common
 import config
 import check
-import time
 
 # the core class - for checking the boundary
 
-
 class Thing():
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        self.print_out()
+    """
+    Core class for all elements of the board
+    """
+    def __init__(self, x_pos, y_pos):
+        self.x_pos = x_pos
+        self.y_pos = y_pos
 
-    def move(self, x, y='?', who='?'):
+    def move(self, x_pos, y_pos='?', who='?'):
+        """
+        Move
+        """
         # polymorphism
-        self.refresh_out()
         if who == '?':
             who = self.__class__.__name__
-        if y != '?':
-            self.y = y
-        self.x = x
+        if y_pos != '?':
+            self.y_pos = y_pos
+        self.x_pos = x_pos
 
-        if who == "Mario":
-            self.print_out()
-        elif who in config.Elements:
+        if who in config.ELEMENTS:
             try:
-                check.check_boundary(self.x+4, self.y)
-                self.print_out()
-            except config.Touch_Boundary:
+                check.check_boundary(self.x_pos+4, self.y_pos)
+            except config.TouchBoundary:
                 if who == "Wall":
-                    config.w_list.remove(self)
+                    config.W_LIST.remove(self)
                 elif who == "Platform":
-                    config.p_list.remove(self)
+                    config.P_LIST.remove(self)
                 elif who == "Gap":
-                    config.g_list.remove(self)
+                    config.G_LIST.remove(self)
                 elif who == "Marijuana":
-                    config.m_list.remove(self)
+                    config.M_LIST.remove(self)
                 elif who == "Fish":
-                    config.f_list.remove(self)
+                    config.F_LIST.remove(self)
                 elif who == "Star":
-                    config.s_list.remove(self)
+                    config.S_LIST.remove(self)
                 elif who == "Boss":
-                    config.b = ""
+                    config.B = ""
                 elif who == "Bullet":
-                    config.b_list.remove(self)
+                    config.B_LIST.remove(self)
+                raise config.DeletedElement
 
-    def change(self, x, y):
-        self.x = x
-        self.y = y
+    def change(self, x_pos, y_pos):
+        """
+        change center coordinates of that element
+        """
+        self.x_pos = x_pos
+        self.y_pos = y_pos
