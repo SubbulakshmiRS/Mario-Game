@@ -1,0 +1,55 @@
+main.py
+- takes the input 
+- randomly creates the Wall and Enemy 
+- floor should be constant except when lava is there (have to make it )
+
+movement.py
+- when Mario goes beyond a range , all the details should move 
+- all enemies and Walls and shit near the boundary should die away - delete_boundary_items (have to make it)
+
+create_scenery.py
+- all common lists e_list ... are defined in this file
+- has functions for creating all the elements of scene
+
+config.py
+- all the characters which we input , common variables 
+
+obstacle.py
+- full definition of Wall 
+- create Wall 
+- create Platform
+- create Marijuana(functionality and point left)
+- create Gap
+
+Person.py
+- full definition of Person , Enemy and Mario ( child classes )
+
+common.py
+- all the commands for the array - terminal representation , rows ,cols and related variables
+
+check.py
+- func for checking life of the Mario
+- func for checking boundary 
+
+to do 
+- all references should be towards rows, cols and such variables
+- make boundary to show the lives left of Mario ,POINTS
+- create colors (not neccesary)
+- sound effect (famous song)
+- update config to add colors and new variables
+- more inheritance and OOPS(private var , encapsulation , ...)
+- levels and tunnels(not neccesary)
+- documentation like README.md using markdown and requirements.txt(!!!) ,etc (refer seniors game)
+- autopep8 and variable names 
+- no dead codes just commented out 
+
+- make sure it plays 
+- left motion 
+- one more enemy 
+- points and health
+- scenery 
+- sound
+- requirements.txt
+- tearing up of screen 
+
+
