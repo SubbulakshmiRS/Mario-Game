@@ -36,17 +36,17 @@ Input the corresponding characters for Mario to do the following action in the g
 
 
 ## *Story of the Game*
-There are 2 LEVELs in the game .
+There are 2 levels in the game .
 # Level1 :
-*LIVES = 3*
-This LEVEL contains basic mario game with the obstacles being the wall,platform,enemy and holes/gaps which are created at random (at a safe distance from the current position of the Mario).All elements are created in such a way to avoid clumping and such.
+*lives = 3*
+This level contains basic mario game with the obstacles being the wall,platform,enemy and holes/gaps which are created at random (at a safe distance from the current position of the Mario).All elements are created in such a way to avoid clumping and such.
 
 # Level2 :
-*LIVES = 10*
-This LEVEL contains the boss enemy which is stationary and fires bullets ,always in the direction oF the Mario with respect to the Enemy .Platforms are randomly formed for Mario to jump on and thereby cross the enemy .
-The only way to win this LEVEL is to fall on top of the Boss enemy .The LIVES of the Mario has increased .
+*lives = 10*
+This level contains the boss enemy which is stationary and fires bullets ,always in the direction oF the Mario with respect to the Enemy .Platforms are randomly formed for Mario to jump on and thereby cross the enemy .
+The only way to win this level is to fall on top of the Boss enemy .The lives of the Mario has increased .
 
-Mario can only go from one LEVEL to another by having a certain number of POINTS and not dead .
+Mario can only go from one level to another by having a certain number of points and not dead .
 Sound packages are used .For specific movements/situations , the packages will be played.
 
 
@@ -56,7 +56,7 @@ Sound packages are used .For specific movements/situations , the packages will b
 
 >ENEMY : the enemy can get killed either by falling into a pit or by getting jumped on by Mario .
 
->BOSS ENEMY : this stationary enemy(only one will be formed in the whole LEVEL) can shoot bullets and can only              die if Mario can jump on top of it without getting shot .
+>BOSS ENEMY : this stationary enemy(only one will be formed in the whole level) can shoot bullets and can only              die if Mario can jump on top of it without getting shot .
 
 >PLATFORM : platforms move in random directions and if jumped on , Mario can run on top of it .
 
@@ -64,11 +64,11 @@ Sound packages are used .For specific movements/situations , the packages will b
 
 >STAR and FISH : part of the background .
 
->MARIJUANA : the infamous weed which when hit on by Mario , gains POINTS
+>MARIJUANA : the infamous weed which when hit on by Mario , gains points
 
 >GAP : these random gaps will be formed in which Mario or the enemy can fall into and die .
 
->FLOOR : to show the LEVEL on which Mario can walk on 
+>FLOOR : to show the level on which Mario can walk on 
 
 ## *References*
 > http://www.numpy.org/

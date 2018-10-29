@@ -1,6 +1,6 @@
 Bugs
 The screen tears up 
-The boundary limits havent been correctly placed
+/The boundary limits havent been correctly placed
 The Mario when reaching a gap is not falling but dies instantaneously 
 The checks are not fully comprehensive 
 Instance of 'str' has no 'refresh_out' (M,B = "")

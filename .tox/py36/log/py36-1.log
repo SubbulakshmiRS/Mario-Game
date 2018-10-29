@@ -1,0 +1,23 @@
+actionid: py36
+msg: getenv
+cmdargs: '/home/subbu/virtualenvs/mario_game/20170169_Assign1/.tox/py36/bin/python -m pip install pytest colorama'
+
+Collecting pytest
+  Using cached https://files.pythonhosted.org/packages/02/75/d041ed00994fbac4c5183e6f4bf6c906506bef8da7a57ef3fc825f171020/pytest-3.9.3-py2.py3-none-any.whl
+Collecting colorama
+  Using cached https://files.pythonhosted.org/packages/0a/93/6e8289231675d561d476d656c2ee3a868c1cca207e16c118d4503b25e2bf/colorama-0.4.0-py2.py3-none-any.whl
+Collecting six>=1.10.0 (from pytest)
+  Using cached https://files.pythonhosted.org/packages/67/4b/141a581104b1f6397bfa78ac9d43d8ad29a7ca43ea90a2d863fe3056e86a/six-1.11.0-py2.py3-none-any.whl
+Collecting attrs>=17.4.0 (from pytest)
+  Using cached https://files.pythonhosted.org/packages/3a/e1/5f9023cc983f1a628a8c2fd051ad19e76ff7b142a0faf329336f9a62a514/attrs-18.2.0-py2.py3-none-any.whl
+Collecting atomicwrites>=1.0 (from pytest)
+  Using cached https://files.pythonhosted.org/packages/3a/9a/9d878f8d885706e2530402de6417141129a943802c084238914fa6798d97/atomicwrites-1.2.1-py2.py3-none-any.whl
+Collecting py>=1.5.0 (from pytest)
+  Using cached https://files.pythonhosted.org/packages/3e/c7/3da685ef117d42ac8d71af525208759742dd235f8094221fdaafcd3dba8f/py-1.7.0-py2.py3-none-any.whl
+Collecting pluggy>=0.7 (from pytest)
+  Using cached https://files.pythonhosted.org/packages/1c/e7/017c262070af41fe251401cb0d0e1b7c38f656da634cd0c15604f1f30864/pluggy-0.8.0-py2.py3-none-any.whl
+Requirement already satisfied: setuptools in ./.tox/py36/lib/python3.6/site-packages (from pytest) (40.5.0)
+Collecting more-itertools>=4.0.0 (from pytest)
+  Using cached https://files.pythonhosted.org/packages/79/b1/eace304ef66bd7d3d8b2f78cc374b73ca03bc53664d78151e9df3b3996cc/more_itertools-4.3.0-py3-none-any.whl
+Installing collected packages: six, attrs, atomicwrites, py, pluggy, more-itertools, pytest, colorama
+Successfully installed atomicwrites-1.2.1 attrs-18.2.0 colorama-0.4.0 more-itertools-4.3.0 pluggy-0.8.0 py-1.7.0 pytest-3.9.3 six-1.11.0
