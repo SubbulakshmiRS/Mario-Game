@@ -1,6 +1,9 @@
 """
 The config file - all common variables and exceptions
 """
+import tty
+import sys
+import signal
 # common variables
 M = ""  # Mario
 B = ""  # Boss
@@ -37,7 +40,7 @@ DIR = [JUMP, BREAK, START, RIGHT, LEFT]
 INVALID = -1
 
 # allowed inputs
-_allowed_inputs = {
+_ALLOWED_INPUTS = {
     JUMP: ['d', '\x1b[A'],
     BREAK: ['s', '\x1b[B'],
     START: ['m', '\x1b[D'],
@@ -110,9 +113,12 @@ class MarioAbove(Exception):
 
 
 def get_key(key):
-    for x in _allowed_inputs:
-        if key in _allowed_inputs[x]:
-            return x
+    """
+    From the inputted key, check whether it is allowed
+    """
+    for x_key in _ALLOWED_INPUTS:
+        if key in _ALLOWED_INPUTS[x_key]:
+            return x_key
     return INVALID
 
 
@@ -132,18 +138,21 @@ class _Getch:
     def __call__(self):
         return self.impl()
 
+    def dummy(self):
+        """
+        dummy function for one public method
+        """
+        pass
+
 
 class _GetchUnix:
     """
     Get inputted character for Unix operating system
     """
     def __init__(self):
-        import tty
-        import sys
+        pass
 
     def __call__(self):
-        import sys
-        import tty
         import termios
         f_d = sys.stdin.fileno()
         old_settings = termios.tcgetattr(f_d)
@@ -153,6 +162,12 @@ class _GetchUnix:
         finally:
             termios.tcsetattr(f_d, termios.TCSADRAIN, old_settings)
         return c_h
+
+    def dummy(self):
+        """
+        dummy function for one public method
+        """
+        pass
 
 
 class _GetchWindows:
@@ -166,8 +181,14 @@ class _GetchWindows:
         import msvcrt
         return msvcrt.getch()
 
+    def dummy(self):
+        """
+        dummy function for one public method
+        """
+        pass
 
-_getch = _Getch()
+
+_GETCH = _Getch()
 
 
 class AlarmException(Exception):
@@ -178,15 +199,21 @@ class AlarmException(Exception):
 
 
 def alarm_handler(signum, frame):
+    """
+    Alarm handler
+    Raises the exception
+    """
     raise AlarmException
 
 
 def get_input(timeout=1):
-    import signal
+    """
+    Get input
+    """
     signal.signal(signal.SIGALRM, alarm_handler)
     signal.alarm(timeout)
     try:
-        text = _getch()
+        text = _GETCH()
         signal.alarm(0)
         return text
     except AlarmException:

@@ -53,10 +53,10 @@ class Mario(Person):
         if common.value_arr(x, y) == "$":
             sound.play_sound("mb_sc.wav")
             for i in config.M_LIST:
-                if (i.x_pos == x or i.x_pos == x+1 or i.x_pos == x-1) and \
-                 (i.y_pos == y or i.y_pos == y+1 or i.y_pos == y-1):
-                    config.POINTS += 20
-                    config.M_LIST.remove(i)
+                if i.x_pos == x or i.x_pos == x+1 or i.x_pos == x-1:
+                    if i.y_pos == y or i.y_pos == y+1 or i.y_pos == y-1:
+                        config.POINTS += 20
+                        config.M_LIST.remove(i)
         try:
 
             if (x > common.R3 and x < common.R4):
