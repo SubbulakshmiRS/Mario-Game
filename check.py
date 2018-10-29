@@ -42,7 +42,7 @@ def check_life(x_pos, y_pos, who):
 # specifically_pos for when the elements are created or when they_pos move near the boundary_pos
 
 
-def check_boundary_pos(x_pos, y_pos):
+def check_boundary(x_pos, y_pos):
     """
     Way to kill any element
     """
@@ -55,4 +55,4 @@ def check(x_pos, y_pos, who):
     Check - umbrella function
     """
     check_life(x_pos, y_pos, who)
-    check_boundary_pos(x_pos, y_pos)
+    check_boundary(x_pos, y_pos)

@@ -17,7 +17,7 @@ class Star(thing.Thing):
     def move(self, x, y='?', who='?'):
         try:
             self.refresh_out()
-            super().move(x,y,"Star")
+            super().move(x, y, "Star")
             self.print_out()
         except config.DeletedElement:
             pass
@@ -46,7 +46,7 @@ class Fish(thing.Thing):
     def move(self, x, y='?', who='?'):
         try:
             self.refresh_out()
-            super().move(x,y,"Fish")
+            super().move(x, y, "Fish")
             self.print_out()
         except config.DeletedElement:
             pass

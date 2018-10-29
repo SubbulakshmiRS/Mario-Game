@@ -1,3 +1,6 @@
+"""
+The config file - all common variables and exceptions
+"""
 # common variables
 M = ""  # Mario
 B = ""  # Boss

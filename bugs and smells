@@ -1,0 +1,19 @@
+Bugs
+The screen tears up 
+The boundary limits havent been correctly placed
+The Mario when reaching a gap is not falling but dies instantaneously 
+The checks are not fully comprehensive 
+Instance of 'str' has no 'refresh_out' (M,B = "")
+
+Code smells 
+Too many branches1 10 check.py
+Too few public methods 122 config.py
+Forced to define the move function repeatedly 
+
+Changes made 
+variables and function names to following naming conventions 
+snake_case , PascalName ,UPPERCASE
+Module and Function docstring 
+Functions which call upon undefined or predefined functions 
+Unneccesary paranthesis for if and while conditions
+traceable whitespace
