@@ -25,14 +25,14 @@ Person.py
 - full definition of Person , Enemy and Mario ( child classes )
 
 common.py
-- all the commands for the array - terminal representation , rows ,cols and related variables
+- all the commands for the array - terminal representation , ROWS ,COLS and related variables
 
 check.py
 - func for checking life of the Mario
 - func for checking boundary 
 
 to do 
-- all references should be towards rows, cols and such variables
+- all references should be towards ROWS, COLS and such variables
 - make boundary to show the LIVES left of Mario ,POINTS
 - create colors (not neccesary)
 - sound effect (famous song)

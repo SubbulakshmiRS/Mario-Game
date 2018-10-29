@@ -1,49 +1,62 @@
+"""
+Common screen related variables and functions
+"""
 import shutil
-import numpy as np
 import os
 import sys
-import config
 import time
+import numpy as np
+import config
 import sound
 
 
 # boundary varibales
-cols = shutil.get_terminal_size().columns
-rows = shutil.get_terminal_size().lines
-mids = int(cols/2)
-r1 = int(mids/2)
-R2 = int((mids + cols)/2)
-r3 = int((3*cols)/8)
-r4 = int((5*cols)/8)
-r5 = int(cols/8)
-r6 = int((7*cols)/8)
-mids_r = int(rows/2)
-r1_r = int(rows/5)
-
+COLS = shutil.get_terminal_size().columns
+ROWS = shutil.get_terminal_size().lines
+MIDS = int(COLS/2)
+R1 = int(MIDS/2)
+R2 = int((MIDS + COLS)/2)
+R3 = int((3*COLS)/8)
+R4 = int((5*COLS)/8)
+R5 = int(COLS/8)
+R6 = int((7*COLS)/8)
+MIDS_R = int(ROWS/2)
+R1_R = int(ROWS/5)
 
 # array representing the whole terminal
-ARR = np.full((cols+1, rows+1), " ", dtype=np.unicode)
+ARR = np.full((COLS+1, ROWS+1), " ", dtype=np.unicode)
+
+def set_arr(x_pos, y_pos, symbol):
+    """
+    set screen
+    """
+    ARR[x_pos][y_pos] = symbol
 
 
-def set_arr(x, y, symbol):
-    ARR[x][y] = symbol
+def reset_arr(x_pos, y_pos):
+    """
+    reset screen
+    """
+    ARR[x_pos][y_pos] = " "
 
 
-def reset_arr(x, y):
-    ARR[x][y] = " "
-
-
-def value_arr(x, y):
-    return(ARR[x][y])
+def value_arr(x_pos, y_pos):
+    """
+    get value of screen at x_pos,y_pos
+    """
+    return ARR[x_pos][y_pos]
 
 
 def print_all():
+    """
+    print out the whole screen
+    """
     os.system("tput reset")
-    for j in range(1, rows+1):
-        for i in range(1, cols+1):
+    for j in range(1, ROWS+1):
+        for i in range(1, COLS+1):
             sys.stdout.write(ARR[i][j])
             sys.stdout.flush()
-        if j < rows:
+        if j < ROWS:
             sys.stdout.write("\n")
 
     print("MARIO GAME BY R.S.SUBBULAKSHMI\t\t\tPOINTS: "+str(config.POINTS) +
@@ -53,9 +66,12 @@ def print_all():
 
 
 def restart_all():
+    """
+    for next level or when Mario dies
+    """
     os.system("tput reset")
     global ARR
-    ARR = np.full((cols+1, rows+1), " ", dtype=np.unicode)
+    ARR = np.full((COLS+1, ROWS+1), " ", dtype=np.unicode)
     config.M = ""
     config.E_LIST = []
     config.W_LIST = []
@@ -70,6 +86,9 @@ def restart_all():
 
 
 def game_over():
+    """
+    Game over
+    """
     sound.play_sound("nsmb_game_over.wav")
     restart_all()
     os.system("tput reset")

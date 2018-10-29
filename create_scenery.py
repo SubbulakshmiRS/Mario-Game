@@ -12,7 +12,7 @@ def floor(floor_y):
     """
     Coordinates of floor
     """
-    for i in range(1, common.cols+1):
+    for i in range(1, common.COLS+1):
         if common.value_arr(i, floor_y) == " ":
             common.set_arr(i, floor_y, "0")
             common.set_arr(i, floor_y+1, "0")
@@ -22,7 +22,7 @@ def create_floor():
     """
     Create floor 
     """
-    floor(common.mids_r+1)
+    floor(common.MIDS_R+1)
 
 
 def create_enemy():
@@ -31,8 +31,8 @@ def create_enemy():
     """
     if randint(0, 20) == 5:
         try:
-            check.check_life(common.cols-1, common.mids_r, "Enemy")
-            eitem = person.Enemy(common.cols-1, common.mids_r)
+            check.check_life(common.COLS-1, common.MIDS_R, "Enemy")
+            eitem = person.Enemy(common.COLS-1, common.MIDS_R)
             config.E_LIST.append(eitem)
         except (config.EnemyHere, config.GapHere):
             pass
@@ -50,25 +50,25 @@ def create_mario():
     """
     Create Mario from fixed coordinates for the given screen space
     """
-    config.M = person.Mario(common.r3, common.mids_r)
+    config.M = person.Mario(common.R3, common.MIDS_R)
 
 
 def create_wall():
     if config.W_LIST == []:
-        pos = randint(config.M.x_pos+4, common.r2)
-        if common.value_arr(pos, common.mids_r) == " " and \
-            common.value_arr(pos, common.mids_r+1) == "0":
+        pos = randint(config.M.x_pos+4, common.R2)
+        if common.value_arr(pos, common.MIDS_R) == " " and \
+            common.value_arr(pos, common.MIDS_R+1) == "0":
             try:
                 witem = obstacle.Wall(pos)
                 config.W_LIST.append(witem)
             except config.GapHere:
                 pass
 
-    elif len(config.W_LIST) < int((3*common.cols)/80):
+    elif len(config.W_LIST) < int((3*common.COLS)/80):
         if randint(0, 10) == 5:
             # create a obstacle
             pos = config.W_LIST[-1].x_pos + randint(10, 20)
-            if pos < common.cols - 3:
+            if pos < common.COLS - 3:
                 try:
                     witem = obstacle.Wall(pos)
                     config.W_LIST.append(witem)
@@ -83,14 +83,14 @@ def create_platform():
 
     if config.P_LIST == []:
         pitem = obstacle.Platform(
-            randint(config.M.x_pos+2, common.cols-5), randint(common.r1_r, common.mids_r-5))
+            randint(config.M.x_pos+2, common.COLS-5), randint(common.R1_R, common.MIDS_R-5))
         config.P_LIST.append(pitem)
-    elif len(config.P_LIST) < int(common.cols/20):
+    elif len(config.P_LIST) < int(common.COLS/20):
         if randint(0, 5) == 1:
             pos = config.P_LIST[-1].x_pos + randint(7, 15)
-            if pos < (common.cols - 3):
+            if pos < (common.COLS - 3):
                 pitem = obstacle.Platform(pos, randint(
-                    common.r1_r, common.mids_r-5))
+                    common.R1_R, common.MIDS_R-5))
                 config.P_LIST.append(pitem)
 
     for i in config.P_LIST:
@@ -101,22 +101,22 @@ def create_platform():
 def create_gap():
 
     if config.G_LIST == []:
-        gitem = obstacle.Gap(randint(config.M.x_pos + 2, common.cols-2))
+        gitem = obstacle.Gap(randint(config.M.x_pos + 2, common.COLS-2))
         config.G_LIST.append(gitem)
     elif randint(0, 10) == 1:
-        gitem = obstacle.Gap(randint(config.M.x_pos + 2, common.cols-2))
+        gitem = obstacle.Gap(randint(config.M.x_pos + 2, common.COLS-2))
         config.G_LIST.append(gitem)
 
 
 def create_fish():
 
     if config.F_LIST == []:
-        fitem = scene.Fish(randint(2, common.cols-2),
-                           randint(common.mids_r + 3, common.rows-2))
+        fitem = scene.Fish(randint(2, common.COLS-2),
+                           randint(common.MIDS_R + 3, common.ROWS-2))
         config.F_LIST.append(fitem)
     elif randint(0, 10) == 1:
-        fitem = scene.Fish(randint(2, common.cols-2),
-                           randint(common.mids_r + 3, common.rows-2))
+        fitem = scene.Fish(randint(2, common.COLS-2),
+                           randint(common.MIDS_R + 3, common.ROWS-2))
         config.F_LIST.append(fitem)
 
     for i in config.F_LIST:
@@ -126,10 +126,10 @@ def create_fish():
 def create_star():
 
     if config.S_LIST == []:
-        sitem = scene.Star(randint(2, common.cols-2), randint(2, common.r1_r))
+        sitem = scene.Star(randint(2, common.COLS-2), randint(2, common.R1_R))
         config.S_LIST.append(sitem)
     elif randint(0, 5) == 1:
-        sitem = scene.Star(randint(2, common.cols-2), randint(2, common.r1_r))
+        sitem = scene.Star(randint(2, common.COLS-2), randint(2, common.R1_R))
         config.S_LIST.append(sitem)
 
 
@@ -137,13 +137,13 @@ def create_marijuana():
 
     if config.M_LIST == []:
         try:
-            mitem = obstacle.Marijuana(randint(common.mids, common.cols-3))
+            mitem = obstacle.Marijuana(randint(common.MIDS, common.COLS-3))
             config.M_LIST.append(mitem)
         except (config.DeadMario, config.WallHere):
             pass
-    elif len(config.M_LIST) <= max(len(config.W_LIST), int(common.cols/20)):
+    elif len(config.M_LIST) <= max(len(config.W_LIST), int(common.COLS/20)):
         pos = config.M_LIST[-1].x_pos + randint(5, 10)
-        if randint(0, 10) == 1 and pos < common.cols-3:
+        if randint(0, 10) == 1 and pos < common.COLS-3:
             try:
                 mitem = obstacle.Marijuana(pos)
                 config.M_LIST.append(mitem)
@@ -153,7 +153,7 @@ def create_marijuana():
 
 def create_boss():
     if config.B == "":
-        config.B = obstacle.Boss(common.r6, common.mids_r)
+        config.B = obstacle.Boss(common.R6, common.MIDS_R)
     else:
         try:
             check.check(config.B.x_pos, config.B.y_pos, "Boss")

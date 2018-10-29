@@ -33,8 +33,8 @@ class Person(thing.Thing):
 
     # drop is for gravity effect - mario and enemy - when they fall into a pit/gap
     def __check(self):
-        if self.y_pos > common.mids_r and common.value_arr(self.x_pos, self.y_pos+1) != '0':
-            if self.y_pos > (common.mids_r + 3):
+        if self.y_pos > common.MIDS_R and common.value_arr(self.x_pos, self.y_pos+1) != '0':
+            if self.y_pos > (common.MIDS_R + 3):
                 raise config.GapHere
             else:
                 self.move(self.x_pos, self.y_pos+1)
@@ -59,7 +59,7 @@ class Mario(Person):
                     config.M_LIST.remove(i)
         try:
 
-            if (x > common.r3 and x < common.r4):
+            if (x > common.R3 and x < common.R4):
                 check.check_life(x, y, "Mario")
                 self.refresh_out()
                 super().move(x, y)

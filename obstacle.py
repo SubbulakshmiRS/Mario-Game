@@ -12,7 +12,7 @@ class Wall(thing.Thing):
     Wall element
     """
     def __init__(self, x):
-        super().__init__(x, common.mids_r)
+        super().__init__(x, common.MIDS_R)
         self.print_out()
 
     def move(self, x, y='?', who='?'):
@@ -77,7 +77,7 @@ class Gap(thing.Thing):
     Gap element
     """
     def __init__(self, x):
-        super().__init__(x, common.mids_r+1)
+        super().__init__(x, common.MIDS_R+1)
         self.print_out()
 
     def move(self, x, y='?', who='?'):
@@ -109,7 +109,7 @@ class Marijuana(thing.Thing):
     """
     def __init__(self, x):
         self.x_pos = x
-        self.y_pos = common.mids_r - 4
+        self.y_pos = common.MIDS_R - 4
         check.check(self.x_pos, self.y_pos, "Marijuana")
         self.print_out()
 

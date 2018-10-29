@@ -13,13 +13,13 @@ def move_all_left_right(x1_pos, x2_pos):
     delete_elements(x1_pos, x2_pos)
 
     a_a = b_b = x_pos = 0
-    if x2_pos == common.cols:
+    if x2_pos == common.COLS:
         a_a = x1_pos
         b_b = 0
         x_pos = x1_pos-x2_pos
     elif x1_pos == 0:
         a_a = x2_pos
-        b_b = common.cols
+        b_b = common.COLS
         x_pos = x2_pos-x1_pos
 
     if a_a > b_b:
@@ -97,8 +97,8 @@ def move_all(x_amt):
         x1_pos = 0
         x2_pos = x_amt
     elif x_amt < 0:
-        x1_pos = common.cols+x_amt
-        x2_pos = common.cols
+        x1_pos = common.COLS+x_amt
+        x2_pos = common.COLS
 
     move_all_left_right(x1_pos, x2_pos)
 
@@ -111,7 +111,7 @@ def replace(r_item, x_pos):
     """
     death = 0
     for i in r_item:
-        for j in range(common.rows):
+        for j in range(common.ROWS):
             if common.ARR[i-x_pos][j] in {"^", "O", "I"} and \
              common.ARR[i][j] not in {" ", "^", "O", "I"}:
                 death = 1

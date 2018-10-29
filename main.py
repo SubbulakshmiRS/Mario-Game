@@ -19,7 +19,7 @@ while config.STAGE == "losing":
             config.LIVES = 10
 
         # if mario goes below the floor LEVEL
-        if config.M != "" and config.M.y_pos > common.mids_r:
+        if config.M != "" and config.M.y_pos > common.MIDS_R:
             raise config.DeadMario
 
         # create the scene depending on the LEVEL
