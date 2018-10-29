@@ -1,6 +1,9 @@
+movement 7.75(instance of type 'str' )
 config.py 7.06(import error )
+person 8.92 (arguments differ )
 main.py 9.41
 create_scenery 9.07 (docstring)
 thing.py 9.72
 sound 10
 scene 10
+obstacle 9.02

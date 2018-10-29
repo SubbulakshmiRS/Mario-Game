@@ -1,6 +1,7 @@
 """
 The scene elements which wont collide with other elements
 """
+import config
 import common
 import thing
 
@@ -12,6 +13,14 @@ class Star(thing.Thing):
     def __init__(self, x, y):
         super().__init__(x, y)
         self.print_out()
+
+    def move(self, x, y='?', who='?'):
+        try:
+            self.refresh_out()
+            super().move(x,y,"Star")
+            self.print_out()
+        except config.DeletedElement:
+            pass
 
     def refresh_out(self):
         """
@@ -33,6 +42,14 @@ class Fish(thing.Thing):
     def __init__(self, x, y):
         super().__init__(x, y)
         self.print_out()
+    
+    def move(self, x, y='?', who='?'):
+        try:
+            self.refresh_out()
+            super().move(x,y,"Fish")
+            self.print_out()
+        except config.DeletedElement:
+            pass
 
     def refresh_out(self):
         """

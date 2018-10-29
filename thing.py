@@ -11,7 +11,7 @@ class Thing():
         self.x_pos = x_pos
         self.y_pos = y_pos
 
-    def move(self, x_pos, y_pos='?', who='?'):
+    def move(self, x_pos, y_pos, who):
         """
         Move
         """

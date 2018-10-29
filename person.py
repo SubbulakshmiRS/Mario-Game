@@ -1,3 +1,6 @@
+"""
+Module for definition of Mario and enemies
+"""
 import common
 import movement
 import check
@@ -10,19 +13,22 @@ import sound
 
 
 class Person(thing.Thing):
+    """
+    Common class for Mario and Enemy
+    """
     def __init__(self, x, y):
-        self.x_pos = x
-        self.y_pos = y
+        super().__init__(x, y)
         # private functions specific for enemy and Mario
         self.__check()
 
     def move(self, x, y='?', who='?'):
-        self.refresh_out()
         super().move(x, y, who)
-        self.print_out()
         self.__check()
 
     def jump(self):
+        """
+        Mario can jump
+        """
         self.move(self.x_pos+3, self.y_pos-3)
 
     # drop is for gravity effect - mario and enemy - when they fall into a pit/gap
@@ -35,6 +41,9 @@ class Person(thing.Thing):
 
 
 class Mario(Person):
+    """
+    Mario main character
+    """
     def __init__(self, x, y):
         super().__init__(x, y)
         self.print_out()
@@ -44,34 +53,48 @@ class Mario(Person):
         if common.value_arr(x, y) == "$":
             sound.play_sound("mb_sc.wav")
             for i in config.M_LIST:
-                if (i.x_pos == x or i.x_pos == x+1 or i.x_pos == x-1) and (i.y_pos == y or i.y_pos == y+1 or i.y_pos == y-1):
+                if (i.x_pos == x or i.x_pos == x+1 or i.x_pos == x-1) and \
+                 (i.y_pos == y or i.y_pos == y+1 or i.y_pos == y-1):
                     config.POINTS += 20
                     config.M_LIST.remove(i)
         try:
 
             if (x > common.r3 and x < common.r4):
                 check.check_life(x, y, "Mario")
+                self.refresh_out()
                 super().move(x, y)
+                self.print_out()
 
             else:
                 movement.move_all(x-self.x_pos)
                 check.check_life(self.x_pos, y, "Mario")
+                self.refresh_out()
                 super().move(self.x_pos, y, "Mario")
+                self.print_out()
 
         except config.GapHere:
             raise config.DeadMario from None
 
     def print_out(self):
+        """
+        update the coordinates
+        """
         common.set_arr(self.x_pos, self.y_pos, "I")
         common.set_arr(self.x_pos, self.y_pos-1, "O")
         common.set_arr(self.x_pos, self.y_pos-2, "^")
 
     def refresh_out(self):
+        """
+        refresh the coordinates
+        """
         for i in range(-2, 1):
             common.reset_arr(self.x_pos, self.y_pos+i)
 
 
 class Enemy(Person):
+    """
+    Enemy , points for killing it
+    """
     def __init__(self, x, y):
         super().__init__(x, y)
         self.print_out()
@@ -80,7 +103,9 @@ class Enemy(Person):
     def move(self, x, y):
         try:
             check.check(x, y, "Enemy")
+            self.refresh_out()
             super().move(x, y)
+            self.print_out()
         except (config.GapHere, config.TouchBoundary):
             config.E_LIST.remove(self)
             self.refresh_out()
@@ -95,13 +120,21 @@ class Enemy(Person):
 
         except config.DeadMario:
             config.M.refresh_out()
+            self.refresh_out()
             super().move(x, y)
+            self.print_out()
             raise config.DeadMario from None
 
     def refresh_out(self):
+        """
+        refresh the coordinates
+        """
         common.reset_arr(self.x_pos, self.y_pos)
         common.reset_arr(self.x_pos+1, self.y_pos)
 
     def print_out(self):
+        """
+        update the coordinates
+        """
         common.set_arr(self.x_pos, self.y_pos, ">")
         common.set_arr(self.x_pos+1, self.y_pos, "<")
