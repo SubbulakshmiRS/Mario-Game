@@ -33,7 +33,7 @@ class Person(thing.Thing):
 
     # drop is for gravity effect - mario and enemy - when they fall into a pit/gap
     def __check(self):
-        if self.y_pos > common.MIDS_R and common.value_arr(self.x_pos, self.y_pos+1) != '0':
+        if self.y_pos >= common.MIDS_R and common.value_arr(self.x_pos, self.y_pos+1) != '0':
             if self.y_pos > (common.MIDS_R + 3):
                 raise config.GapHere
             else:

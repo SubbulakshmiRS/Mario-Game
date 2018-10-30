@@ -184,15 +184,18 @@ class Boss(thing.Thing):
         except config.DeletedElement:
             pass
 
-    def shoot(self, x):
+    def shoot(self, x_pos):
+        """
+        For the smart bullets
+        """
         dir = 0
-        if x > self.x_pos:
+        if x_pos > self.x_pos:
             dir = 1
         else:
             dir = -1
 
-        b = Bullet(self.x_pos+dir, self.y_pos, dir)
-        config.B_LIST.append(b)
+        b_item = Bullet(self.x_pos+dir, self.y_pos, dir)
+        config.B_LIST.append(b_item)
 
         for i in config.B_LIST:
             i.move(i.x_pos+i.dir)

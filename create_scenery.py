@@ -1,3 +1,6 @@
+"""
+All elements of the scenery of the game
+"""
 from random import randint
 
 import person
@@ -20,14 +23,14 @@ def floor(floor_y):
 
 def create_floor():
     """
-    Create floor 
+    Create floor
     """
     floor(common.MIDS_R+1)
 
 
 def create_enemy():
     """
-    Create enemy using random functions and within a range of coordinates 
+    Create enemy using random functions and within a range of coordinates
     """
     if randint(0, 20) == 5:
         try:
@@ -54,6 +57,9 @@ def create_mario():
 
 
 def create_wall():
+    """
+    Randomly generating , with out making it conjusted , walls as obstacles
+    """
     if config.W_LIST == []:
         pos = randint(config.M.x_pos+4, common.R2)
         if common.value_arr(pos, common.MIDS_R) == " " and \
@@ -80,7 +86,10 @@ def create_wall():
 
 
 def create_platform():
-
+    """
+    Randomly generating , with out making it conjusted , walls as platforms
+    Mario can walk on these
+    """
     if config.P_LIST == []:
         pitem = obstacle.Platform(
             randint(config.M.x_pos+2, common.COLS-5), randint(common.R1_R, common.MIDS_R-5))
@@ -99,7 +108,9 @@ def create_platform():
 
 
 def create_gap():
-
+    """
+    Randomly generating gaps on which the enemy or Mario can fall into
+    """
     if config.G_LIST == []:
         gitem = obstacle.Gap(randint(config.M.x_pos + 2, common.COLS-2))
         config.G_LIST.append(gitem)
@@ -109,7 +120,9 @@ def create_gap():
 
 
 def create_fish():
-
+    """
+    Create fish below the floor / ground level
+    """
     if config.F_LIST == []:
         fitem = scene.Fish(randint(2, common.COLS-2),
                            randint(common.MIDS_R + 3, common.ROWS-2))
@@ -124,7 +137,9 @@ def create_fish():
 
 
 def create_star():
-
+    """
+    Create stars at the top most quarter of the screen
+    """
     if config.S_LIST == []:
         sitem = scene.Star(randint(2, common.COLS-2), randint(2, common.R1_R))
         config.S_LIST.append(sitem)
@@ -134,7 +149,9 @@ def create_star():
 
 
 def create_marijuana():
-
+    """
+    Points for Mario which can be taken in parts
+    """
     if config.M_LIST == []:
         try:
             mitem = obstacle.Marijuana(randint(common.MIDS, common.COLS-3))
@@ -152,6 +169,9 @@ def create_marijuana():
 
 
 def create_boss():
+    """
+    Create the level2 BOSS enemy (smart bullets)
+    """
     if config.B == "":
         config.B = obstacle.Boss(common.R6, common.MIDS_R)
     else:
@@ -164,12 +184,18 @@ def create_boss():
 
 # the gravity effect is created here
 def check_floor():
+    """
+    For gravity check
+    """
     if common.value_arr(config.M.x_pos, config.M.y_pos+1) != "0":
         while common.value_arr(config.M.x_pos, config.M.y_pos+1) != "0":
             config.M.move(config.M.x_pos, config.M.y_pos+1)
 
 
 def create_scene():
+    """
+    Complete scene with all the elements
+    """
     create_floor()
     if config.M != "":
         if config.LEVEL == 1:

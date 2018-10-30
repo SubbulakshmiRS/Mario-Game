@@ -52,7 +52,7 @@ def delete_elements(x1_pos, x2_pos):
     # delete all the elements which are in range x1_pos to x2_pos
     list_all = [config.E_LIST, config.W_LIST, config.P_LIST, config.M_LIST,
                 config.F_LIST, config.S_LIST, config.B_LIST]
-    for k in list_all:
+    for k in range(7):
         for i in list_all[k]:
             if i.x_pos in range(x1_pos, x2_pos):
                 list_all[k].remove(i)

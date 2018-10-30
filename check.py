@@ -46,7 +46,7 @@ def check_boundary(x_pos, y_pos):
     """
     Way to kill any element
     """
-    if x_pos == 1 or x_pos == common.COLS or y_pos == 1 or y_pos == common.ROWS:
+    if x_pos <= 4 or x_pos >= (common.COLS-4) or y_pos <= 4 or y_pos >= (common.ROWS-4):
         raise config.TouchBoundary
 
 
