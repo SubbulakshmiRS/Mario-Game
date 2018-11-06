@@ -1,0 +1,15 @@
+actionid: py35
+msg: envreport
+cmdargs: '/home/subbu/virtualenvs/mario_game/20170169_Assign1/.tox/py35/bin/python -m pip freeze'
+
+atomicwrites==1.2.1
+attrs==18.2.0
+colorama==0.4.0
+Mario==0.1
+more-itertools==4.3.0
+numpy==1.15.3
+pathlib2==2.3.2
+pluggy==0.8.0
+py==1.7.0
+pytest==3.9.3
+six==1.11.0

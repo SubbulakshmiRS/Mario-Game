@@ -1,0 +1,10 @@
+actionid: py35
+msg: getenv
+cmdargs: '/home/subbu/virtualenvs/mario_game/bin/python3 -m virtualenv --python /home/subbu/virtualenvs/mario_game/bin/python3 py35'
+
+Already using interpreter /home/subbu/virtualenvs/mario_game/bin/python3
+Using real prefix '/usr'
+Path not in prefix '/home/subbu/virtualenvs/mario_game/include/python3.5m' '/usr'
+New python executable in /home/subbu/virtualenvs/mario_game/20170169_Assign1/.tox/py35/bin/python3
+Also creating executable in /home/subbu/virtualenvs/mario_game/20170169_Assign1/.tox/py35/bin/python
+Installing setuptools, pip, wheel...done.

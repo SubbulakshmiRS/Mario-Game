@@ -1,0 +1,36 @@
+actionid: tox
+msg: packaging
+cmdargs: '/home/subbu/virtualenvs/mario_game/bin/python3 /home/subbu/virtualenvs/mario_game/20170169_Assign1/setup.py sdist --formats=zip --dist-dir /home/subbu/virtualenvs/mario_game/20170169_Assign1/.tox/dist'
+
+running sdist
+running egg_info
+writing top-level names to Mario.egg-info/top_level.txt
+writing Mario.egg-info/PKG-INFO
+writing dependency_links to Mario.egg-info/dependency_links.txt
+reading manifest file 'Mario.egg-info/SOURCES.txt'
+writing manifest file 'Mario.egg-info/SOURCES.txt'
+running check
+warning: check: missing required meta-data: url
+
+warning: check: missing meta-data: either (author and author_email) or (maintainer and maintainer_email) must be supplied
+
+creating Mario-0.1
+creating Mario-0.1/Mario.egg-info
+copying files to Mario-0.1...
+copying README.md -> Mario-0.1
+copying setup.py -> Mario-0.1
+copying Mario.egg-info/PKG-INFO -> Mario-0.1/Mario.egg-info
+copying Mario.egg-info/SOURCES.txt -> Mario-0.1/Mario.egg-info
+copying Mario.egg-info/dependency_links.txt -> Mario-0.1/Mario.egg-info
+copying Mario.egg-info/top_level.txt -> Mario-0.1/Mario.egg-info
+Writing Mario-0.1/setup.cfg
+creating '.tox/dist/Mario-0.1.zip' and adding 'Mario-0.1' to it
+adding 'Mario-0.1/setup.py'
+adding 'Mario-0.1/PKG-INFO'
+adding 'Mario-0.1/setup.cfg'
+adding 'Mario-0.1/README.md'
+adding 'Mario-0.1/Mario.egg-info/top_level.txt'
+adding 'Mario-0.1/Mario.egg-info/PKG-INFO'
+adding 'Mario-0.1/Mario.egg-info/SOURCES.txt'
+adding 'Mario-0.1/Mario.egg-info/dependency_links.txt'
+removing 'Mario-0.1' (and everything under it)

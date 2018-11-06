@@ -1,21 +1,26 @@
+"""
+The config file - all common variables and exceptions
+"""
+import tty
+import sys
+import signal
 # common variables
+M = ""  # Mario
+B = ""  # Boss
+E_LIST = []  # Enemy
+W_LIST = []  # Wall
+P_LIST = []  # Platform
+G_LIST = []  # Gap
+M_LIST = []  # Marijuana
+F_LIST = []  # Fish
+S_LIST = []  # Star
+B_LIST = []  # Bullets
+LIVES = 3  # LIVES for LEVEL 1
+POINTS = 0
+LEVEL = 1  # current LEVEL
+STAGE = "losing"  # if you aint winning , then you are loosing
 
-m = ""  # Mario
-b = ""  # Boss
-e_list = []  # Enemy
-w_list = []  # Wall
-p_list = []  # Platform
-g_list = []  # Gap
-m_list = []  # Marijuana
-f_list = []  # Fish
-s_list = []  # Star
-b_list = []  # Bullets
-lives = 3  # lives for level 1
-points = 0
-level = 1  # current level
-stage = "losing"  # if you aint winning , then you are loosing
-
-Elements = ["Wall", "Platform", "Marijuana",
+ELEMENTS = ["Wall", "Platform", "Marijuana",
             "Gap", "Fish", "Star", "Boss", "Bullet"]
 
 '''
@@ -30,12 +35,12 @@ Elements = ["Wall", "Platform", "Marijuana",
 '''
 
 # key presses
-START, BREAK, RIGHT, LEFT, JUMP,  QUIT = range(6)
+START, BREAK, RIGHT, LEFT, JUMP, QUIT = range(6)
 DIR = [JUMP, BREAK, START, RIGHT, LEFT]
 INVALID = -1
 
 # allowed inputs
-_allowed_inputs = {
+_ALLOWED_INPUTS = {
     JUMP: ['d', '\x1b[A'],
     BREAK: ['s', '\x1b[B'],
     START: ['m', '\x1b[D'],
@@ -46,41 +51,74 @@ _allowed_inputs = {
 
 # contains all the exceptions used
 
-
-class Dead_Mario(Exception):
+class DeletedElement(Exception):
+    """
+    Element deleted from list
+    """
     pass
 
 
-class Touch_Boundary(Exception):
+class DeadMario(Exception):
+    """
+    Mario has lost a life
+    """
     pass
 
 
-class Wall_Here(Exception):
+class TouchBoundary(Exception):
+    """
+    One of the elements of the screen has touched the boundary
+    thus must be killed and not rendered again
+    """
     pass
 
 
-class Gap_Here(Exception):
+class WallHere(Exception):
+    """
+    Element can;t be rendered here
+    """
     pass
 
 
-class Enemy_Here(Exception):
+class GapHere(Exception):
+    """
+    Element will fall through
+    """
     pass
 
 
-class Platform_Here(Exception):
+class EnemyHere(Exception):
+    """
+    Enemy present at the same location
+    """
     pass
 
 
-class Mario_Above(Exception):
+class PlatformHere(Exception):
+    """
+    Element wont fall through
+    """
+    pass
+
+
+class MarioAbove(Exception):
+    """
+    Mario when above the POINTS and about to
+    hit , it gets those coins
+    """
+>>>>>>> a176df05d3471b3df255952bd67934a98744c8e8
     pass
 
 # functions for getting the input key
 
 
 def get_key(key):
-    for x in _allowed_inputs:
-        if key in _allowed_inputs[x]:
-            return x
+    """
+    From the inputted key, check whether it is allowed
+    """
+    for x_key in _ALLOWED_INPUTS:
+        if key in _ALLOWED_INPUTS[x_key]:
+            return x_key
     return INVALID
 
 
@@ -88,7 +126,9 @@ def get_key(key):
 
 
 class _Getch:
-
+    """
+    Get the inputted character
+    """
     def __init__(self):
         try:
             self.impl = _GetchWindows()
@@ -98,29 +138,42 @@ class _Getch:
     def __call__(self):
         return self.impl()
 
+    def dummy(self):
+        """
+        dummy function for one public method
+        """
+        pass
+
 
 class _GetchUnix:
-
+    """
+    Get inputted character for Unix operating system
+    """
     def __init__(self):
-        import tty
-        import sys
+        pass
 
     def __call__(self):
-        import sys
-        import tty
         import termios
-        fd = sys.stdin.fileno()
-        old_settings = termios.tcgetattr(fd)
+        f_d = sys.stdin.fileno()
+        old_settings = termios.tcgetattr(f_d)
         try:
             tty.setraw(sys.stdin.fileno())
-            ch = sys.stdin.read(1)
+            c_h = sys.stdin.read(1)
         finally:
-            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-        return ch
+            termios.tcsetattr(f_d, termios.TCSADRAIN, old_settings)
+        return c_h
+
+    def dummy(self):
+        """
+        dummy function for one public method
+        """
+        pass
 
 
 class _GetchWindows:
-
+    """
+    Get inputted character for Windows operating system
+    """
     def __init__(self):
         import msvcrt
 
@@ -128,24 +181,39 @@ class _GetchWindows:
         import msvcrt
         return msvcrt.getch()
 
+    def dummy(self):
+        """
+        dummy function for one public method
+        """
+        pass
 
-_getch = _Getch()
+
+_GETCH = _Getch()
 
 
 class AlarmException(Exception):
+    """
+    Alarm exception
+    """
     pass
 
 
-def alarmHandler(signum, frame):
+def alarm_handler(signum, frame):
+    """
+    Alarm handler
+    Raises the exception
+    """
     raise AlarmException
 
 
 def get_input(timeout=1):
-    import signal
-    signal.signal(signal.SIGALRM, alarmHandler)
+    """
+    Get input
+    """
+    signal.signal(signal.SIGALRM, alarm_handler)
     signal.alarm(timeout)
     try:
-        text = _getch()
+        text = _GETCH()
         signal.alarm(0)
         return text
     except AlarmException:

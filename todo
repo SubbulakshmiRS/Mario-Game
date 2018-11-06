@@ -1,0 +1,21 @@
+movement 7.75(instance of type 'str' )
+config.py 8.59(import error )
+person 9.05
+common 9.82
+main.py 9.41
+create_scenery 9.07 (docstring)
+thing.py 9.72
+sound 10
+scene 10
+obstacle 9.02
+check 9.72
+
+net 9.01
+
+get scores above 9 
+get 15 tests /12
+fix tests -  boundary and drop
+get the different codes
+create directory structure 
+create the final pdf for code review 
+done by 10

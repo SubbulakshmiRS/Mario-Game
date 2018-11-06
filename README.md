@@ -1,7 +1,8 @@
 # MARIO *Game* 
 
-This is a simple mario game purely written in python3 without the usage of standard libraries such as *Pygame* , *Curses* and such .The code strictly follows the many OOPS concepts and PEP8 standard .
+This is a simple mario game purely written in python3 without the usage of standard libraries such as *Pygame* , *Curses* and such .The code strictly follows the many OOPS concepts and PEP8 standard . The code updated to have tests for creation of elements and functionalities like jumping , dropping and moving left and right . These tests are written using *Pylint* and *Tox* . *Pylint* has also been applied to increase standard of code .
 
+*All installation commands are for Ubuntu operating system*
 
 ## *Installation and Running*
 
@@ -19,6 +20,22 @@ Install dependencies
 Run the code for the game 
 > python3 main.py
 
+
+## *Testing and Linting*
+
+Install tox and pytest in the workspace
+> pip install tox
+
+> pip install -U pytest
+
+Run tests
+> tox 
+
+Install pylint in the workspace
+> sudo apt-get install pylint
+
+Run pylint 
+> pylint *\<filename\>.py*
 
 ## *Inputs for the Mario*
 Input the corresponding characters for Mario to do the following action in the game

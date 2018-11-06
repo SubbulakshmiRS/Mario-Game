@@ -1,3 +1,6 @@
+"""
+All elements of the scenery of the game
+"""
 from random import randint
 
 import person
@@ -9,167 +12,201 @@ import scene
 
 
 def floor(floor_y):
-
-    for i in range(1, common.cols+1):
-        if (common.value_arr(i, floor_y) == " "):
+    """
+    Coordinates of floor
+    """
+    for i in range(1, common.COLS+1):
+        if common.value_arr(i, floor_y) == " ":
             common.set_arr(i, floor_y, "0")
             common.set_arr(i, floor_y+1, "0")
 
 
-def create_Floor():
-    floor(common.mids_r+1)
+def create_floor():
+    """
+    Create floor
+    """
+    floor(common.MIDS_R+1)
 
 
-def create_Enemy():
-
-    if (randint(0, 20) == 5):
+def create_enemy():
+    """
+    Create enemy using random functions and within a range of coordinates
+    """
+    if randint(0, 20) == 5:
         try:
-            check.check_life(common.cols-1, common.mids_r, "Enemy")
-            e = person.Enemy(common.cols-1, common.mids_r)
-            config.e_list.append(e)
-        except (config.Enemy_Here, config.Gap_Here):
+            check.check_life(common.COLS-1, common.MIDS_R, "Enemy")
+            eitem = person.Enemy(common.COLS-1, common.MIDS_R)
+            config.E_LIST.append(eitem)
+        except (config.EnemyHere, config.GapHere):
             pass
 
-    for i in config.e_list:
+    for i in config.E_LIST:
         try:
-            i.move(i.x-2, i.y)
-        except config.Wall_Here:
+            i.move(i.x_pos-2, i.y_pos)
+        except config.WallHere:
             pass
-        except config.Enemy_Here:
-            config.e_list.remove(i)
+        except config.EnemyHere:
+            config.E_LIST.remove(i)
 
 
-def create_Mario():
-    config.m = person.Mario(common.r3, common.mids_r)
+def create_mario():
+    """
+    Create Mario from fixed coordinates for the given screen space
+    """
+    config.M = person.Mario(common.R3, common.MIDS_R)
 
 
-def create_Wall():
-    if len(config.w_list) == 0:
-        pos = randint(config.m.x+4, common.r2)
-        if common.value_arr(pos, common.mids_r) == " " and common.value_arr(pos, common.mids_r+1) == "0":
+def create_wall():
+    """
+    Randomly generating , with out making it conjusted , walls as obstacles
+    """
+    if config.W_LIST == []:
+        pos = randint(config.M.x_pos+4, common.R2)
+        if common.value_arr(pos, common.MIDS_R) == " " and \
+            common.value_arr(pos, common.MIDS_R+1) == "0":
             try:
-                w = obstacle.Wall(pos)
-                config.w_list.append(w)
-            except config.Gap_Here:
+                witem = obstacle.Wall(pos)
+                config.W_LIST.append(witem)
+            except config.GapHere:
                 pass
 
-    elif len(config.w_list) < int((3*common.cols)/80):
-        if (randint(0, 10) == 5):
+    elif len(config.W_LIST) < int((3*common.COLS)/80):
+        if randint(0, 10) == 5:
             # create a obstacle
-            pos = config.w_list[-1].x + randint(10, 20)
-            if pos < common.cols - 3:
+            pos = config.W_LIST[-1].x_pos + randint(10, 20)
+            if pos < common.COLS - 3:
                 try:
-                    w = obstacle.Wall(pos)
-                    config.w_list.append(w)
-                except config.Gap_Here:
+                    witem = obstacle.Wall(pos)
+                    config.W_LIST.append(witem)
+                except config.GapHere:
                     pass
 
     else:
         pass
 
 
-def create_Platform():
+def create_platform():
+    """
+    Randomly generating , with out making it conjusted , walls as platforms
+    Mario can walk on these
+    """
+    if config.P_LIST == []:
+        pitem = obstacle.Platform(
+            randint(config.M.x_pos+2, common.COLS-5), randint(common.R1_R, common.MIDS_R-5))
+        config.P_LIST.append(pitem)
+    elif len(config.P_LIST) < int(common.COLS/20):
+        if randint(0, 5) == 1:
+            pos = config.P_LIST[-1].x_pos + randint(7, 15)
+            if pos < (common.COLS - 3):
+                pitem = obstacle.Platform(pos, randint(
+                    common.R1_R, common.MIDS_R-5))
+                config.P_LIST.append(pitem)
 
-    if len(config.p_list) == 0:
-        p = obstacle.Platform(
-            randint(config.m.x+2, common.cols-5), randint(common.r1_r, common.mids_r-5))
-        config.p_list.append(p)
-    elif len(config.p_list) < int(common.cols/20):
-        if(randint(0, 5) == 1):
-            pos = config.p_list[-1].x + randint(7, 15)
-            if pos < (common.cols - 3):
-                p = obstacle.Platform(pos, randint(
-                    common.r1_r, common.mids_r-5))
-                config.p_list.append(p)
-
-    for i in config.p_list:
-        x = randint(-3, 3)+i.x
-        i.move(x)
-
-
-def create_Gap():
-
-    if config.g_list == []:
-        g = obstacle.Gap(randint(config.m.x + 2, common.cols-2))
-        config.g_list.append(g)
-    elif(randint(0, 10) == 1):
-        g = obstacle.Gap(randint(config.m.x + 2, common.cols-2))
-        config.g_list.append(g)
+    for i in config.P_LIST:
+        xitem = randint(-3, 3)+i.x_pos
+        i.move(xitem)
 
 
-def create_Fish():
-    
-    if config.f_list == []:
-        f = scene.Fish(randint(2, common.cols-2),
-                       randint(common.mids_r + 3, common.rows-2))
-        config.f_list.append(f)
-    elif(randint(0, 10) == 1):
-        f = scene.Fish(randint(2, common.cols-2),
-                       randint(common.mids_r + 3, common.rows-2))
-        config.f_list.append(f)
-
-    for i in config.f_list:
-        i.move(i.x+1)
+def create_gap():
+    """
+    Randomly generating gaps on which the enemy or Mario can fall into
+    """
+    if config.G_LIST == []:
+        gitem = obstacle.Gap(randint(config.M.x_pos + 2, common.COLS-2))
+        config.G_LIST.append(gitem)
+    elif randint(0, 10) == 1:
+        gitem = obstacle.Gap(randint(config.M.x_pos + 2, common.COLS-2))
+        config.G_LIST.append(gitem)
 
 
-def create_Star():
+def create_fish():
+    """
+    Create fish below the floor / ground level
+    """
+    if config.F_LIST == []:
+        fitem = scene.Fish(randint(2, common.COLS-2),
+                           randint(common.MIDS_R + 3, common.ROWS-2))
+        config.F_LIST.append(fitem)
+    elif randint(0, 10) == 1:
+        fitem = scene.Fish(randint(2, common.COLS-2),
+                           randint(common.MIDS_R + 3, common.ROWS-2))
+        config.F_LIST.append(fitem)
 
-    if config.s_list == []:
-        s = scene.Star(randint(2, common.cols-2), randint(2, common.r1_r))
-        config.s_list.append(s)
-    elif(randint(0, 5) == 1):
-        s = scene.Star(randint(2, common.cols-2), randint(2, common.r1_r))
-        config.s_list.append(s)
+    for i in config.F_LIST:
+        i.move(i.x_pos+1)
 
 
-def create_Marijuana():
+def create_star():
+    """
+    Create stars at the top most quarter of the screen
+    """
+    if config.S_LIST == []:
+        sitem = scene.Star(randint(2, common.COLS-2), randint(2, common.R1_R))
+        config.S_LIST.append(sitem)
+    elif randint(0, 5) == 1:
+        sitem = scene.Star(randint(2, common.COLS-2), randint(2, common.R1_R))
+        config.S_LIST.append(sitem)
 
-    if len(config.m_list) == 0:
+
+def create_marijuana():
+    """
+    Points for Mario which can be taken in parts
+    """
+    if config.M_LIST == []:
         try:
-            m = obstacle.Marijuana(randint(common.mids, common.cols-3))
-            config.m_list.append(m)
-        except (config.Dead_Mario, config.Wall_Here):
+            mitem = obstacle.Marijuana(randint(common.MIDS, common.COLS-3))
+            config.M_LIST.append(mitem)
+        except (config.DeadMario, config.WallHere):
             pass
-    elif len(config.m_list) <= max(len(config.w_list), int(common.cols/20)):
-        pos = config.m_list[-1].x + randint(5, 10)
-        if(randint(0, 10) == 1 and pos < common.cols-3):
+    elif len(config.M_LIST) <= max(len(config.W_LIST), int(common.COLS/20)):
+        pos = config.M_LIST[-1].x_pos + randint(5, 10)
+        if randint(0, 10) == 1 and pos < common.COLS-3:
             try:
-                m = obstacle.Marijuana(pos)
-                config.m_list.append(m)
-            except (config.Dead_Mario, config.Wall_Here):
+                mitem = obstacle.Marijuana(pos)
+                config.M_LIST.append(mitem)
+            except (config.DeadMario, config.WallHere):
                 pass
 
 
-def create_Boss():
-    if config.b == "":
-        config.b = obstacle.Boss(common.r6, common.mids_r)
+def create_boss():
+    """
+    Create the level2 BOSS enemy (smart bullets)
+    """
+    if config.B == "":
+        config.B = obstacle.Boss(common.R6, common.MIDS_R)
     else:
         try:
-            check.check(config.b.x, config.b.y, "Boss")
+            check.check(config.B.x_pos, config.B.y_pos, "Boss")
             if randint(0, 5) == 1:
-                config.b.shoot(config.m.x)
-        except config.Mario_Above:
-            config.stage = "won"
+                config.B.shoot(config.M.x_pos)
+        except config.MarioAbove:
+            config.STAGE = "won"
 
 # the gravity effect is created here
 def check_floor():
-    if common.value_arr(config.m.x, config.m.y+1) != "0":
-        while(common.value_arr(config.m.x, config.m.y+1) != "0"):
-            config.m.move(config.m.x, config.m.y+1)
+    """
+    For gravity check
+    """
+    if common.value_arr(config.M.x_pos, config.M.y_pos+1) != "0":
+        while common.value_arr(config.M.x_pos, config.M.y_pos+1) != "0":
+            config.M.move(config.M.x_pos, config.M.y_pos+1)
 
 
 def create_scene():
-    create_Floor()
-    if config.m != "":
-        if config.level == 1:
-            create_Wall()
-            create_Enemy()
-            create_Gap()
-            create_Platform()
-            create_Marijuana()
-            create_Star()
-            create_Fish()
-        elif config.level == 2:
-            create_Boss()
-            create_Platform()
-            create_Star()
+    """
+    Complete scene with all the elements
+    """
+    create_floor()
+    if config.M != "":
+        if config.LEVEL == 1:
+            create_wall()
+            create_enemy()
+            create_gap()
+            create_platform()
+            create_marijuana()
+            create_star()
+            create_fish()
+        elif config.LEVEL == 2:
+            create_boss()
+            create_platform()
+            create_star()

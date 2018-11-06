@@ -6,6 +6,6 @@ mccabe==0.6.1
 numpy==1.15.0
 playsound==1.2.2
 pylint==1.9.3
-ruamel.yaml==0.15.61
+ruamel.y_posaml==0.15.61
 six==1.11.0
 wrapt==1.10.11
